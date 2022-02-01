@@ -8,24 +8,27 @@ public class Movement : MonoBehaviour
     [SerializeField] float force;
     [SerializeField] float jumpForce;
     Vector3 spdLastFrame;
+    Collider col;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            rb.AddForce(Vector3.forward * force * Time.deltaTime);
-        }
+        rb.AddForce(new Vector3(Input.GetAxis("Horizontal") * force * Time.deltaTime, 0f, Input.GetAxis("Vertical")) * force * Time.deltaTime);
         print("Vel: " + rb.velocity);
         print("Accel: " + (rb.velocity - spdLastFrame) * 1000);
         spdLastFrame = rb.velocity;
+    }
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            rb.AddForce(Vector3.up * jumpForce * Time.deltaTime);
+    private void OnCollisionStay(Collision collision)
+    {
+        if(Input.GetAxis("Jump") > 0.005)
+        {
+            rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
         }
     }
 }
