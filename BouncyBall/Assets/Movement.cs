@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     public PhysicMaterial bouncey;
     public PhysicMaterial defaultMat;
     [SerializeField] bool grounded;
+    [SerializeField] bool braking;
 
     private void Start()
     {
@@ -31,9 +32,11 @@ public class Movement : MonoBehaviour
             gameObject.GetComponent<Collider>().material = defaultMat;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetAxis("Drop") > 0.005 && !braking)
         {
+            braking = true;
             rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             rb.AddForce(new Vector3(0f, -1 * dropForce * Time.deltaTime, 0f), ForceMode.Impulse);
         }
         else
@@ -63,6 +66,7 @@ public class Movement : MonoBehaviour
         if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
         {
             grounded = true;
+            braking = false;
         }
         if (collision.gameObject.tag == "Speed Booster" && !collision.gameObject.GetComponent<SpeedBoost>().needsBounce)
         {
@@ -86,5 +90,14 @@ public class Movement : MonoBehaviour
                     0f), ForceMode.Impulse);
         }
 
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
+        {
+            grounded = true;
+            braking = false;
+        }
     }
 }
