@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     Collider col;
     public PhysicMaterial bouncey;
     public PhysicMaterial defaultMat;
+    [SerializeField] bool grounded;
 
     private void Start()
     {
@@ -39,21 +40,30 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(new Vector3(Input.GetAxis("Horizontal") * force * Time.deltaTime, 0f, Input.GetAxis("Vertical") * force * Time.deltaTime));
         }
+
+        if (Input.GetAxis("Jump") > 0.005 && grounded)
+        {
+            rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
+        }
         print("Vel: " + rb.velocity);
         print("Accel: " + (rb.velocity - spdLastFrame) * 1000);
         spdLastFrame = rb.velocity;
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
-        if (Input.GetAxis("Jump") > 0.005)
+        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
         {
-            rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
+            grounded = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
+        {
+            grounded = true;
+        }
         if (collision.gameObject.tag == "Speed Booster" && !collision.gameObject.GetComponent<SpeedBoost>().needsBounce)
         {
             float addedForce = collision.gameObject.GetComponent<SpeedBoost>().addedForce;
