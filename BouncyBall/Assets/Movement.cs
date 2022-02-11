@@ -14,15 +14,17 @@ public class Movement : MonoBehaviour
     public PhysicMaterial defaultMat;
     [SerializeField] bool grounded;
     [SerializeField] bool braking;
+    public SphereCollider breakCol;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        col = GetComponent<SphereCollider>();
     }
 
     private void FixedUpdate()
     {
+        breakCol.radius = (2.642857143E-4f * Breakable.KineticEnergy(rb)) + 0.5704761905f;
         if (Input.GetAxis("Jump") > 0.005)
         {
             gameObject.GetComponent<Collider>().material = bouncey;
@@ -55,7 +57,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
+        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
             grounded = false;
         }
@@ -63,7 +65,8 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
+        
+        if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
             grounded = true;
             braking = false;
@@ -82,8 +85,9 @@ public class Movement : MonoBehaviour
                     addedForce * collision.gameObject.GetComponent<SpeedBoost>().directionSpecifier.z * Time.deltaTime), ForceMode.Impulse);
             }
         }
-        else if (collision.gameObject.tag == "Speed Booster" && collision.gameObject.GetComponent<SpeedBoost>().needsBounce && rb.velocity.y >= Mathf.Abs(0.005f))
+        else if (collision.gameObject.tag == "Speed Booster" && collision.gameObject.GetComponent<SpeedBoost>().needsBounce && rb.velocity.y >= Mathf.Abs(1f))
         {
+            Debug.Log("Y VEL: " + rb.velocity.y);
             float addedForce = collision.gameObject.GetComponent<SpeedBoost>().addedForce;
             rb.AddForce(new Vector3(0f,
                     addedForce * collision.gameObject.GetComponent<SpeedBoost>().directionSpecifier.y * Time.deltaTime,

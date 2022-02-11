@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Speed Booster
+  - Breakable
+  - Crush
   layers:
   - Default
   - TransparentFX
