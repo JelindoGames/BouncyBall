@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb502f864e6340029c3595f34394306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 600
+  force: 400
   jumpForce: 13000
   jumpForceOnBounce: 11000
   dropForce: 1000
@@ -820,8 +820,8 @@ MonoBehaviour:
   ambientFrictionAmtAir: 0.5
   bouncey: {fileID: 13400000, guid: bfe6eda6fc96f4adc97314815763f696, type: 2}
   defaultMat: {fileID: 13400000, guid: 178ba8f9db59344d186dc96263e9c4f8, type: 2}
-  grounded: 0
-  groundedForPeriod: 0
+  grounded: 1
+  groundedForPeriod: 1
   framesNeededGroundedForPeriod: 5
   braking: 0
   breakCol: {fileID: 859496174}
