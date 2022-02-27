@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float origSpeedCap;
     [SerializeField] float fakeFrictionAmt;
     [SerializeField] float fakeFrictionAmtAir;
+    [SerializeField] float ambientFrictionAmtGround;
+    [SerializeField] float ambientFrictionAmtAir;
     Vector3 spdLastFrame;
     Collider col;
     public PhysicMaterial bouncey;
@@ -115,8 +117,13 @@ public class Movement : MonoBehaviour
             rb.AddForce(new Vector3(Input.GetAxis("Horizontal") * force * Time.fixedDeltaTime, 0f, Input.GetAxis("Vertical") * force * Time.fixedDeltaTime));
             if (velFwd.magnitude > origSpeedCap)
             {
-                print("velFwd.magnitude: " + velFwd.magnitude);
                 float frictionAmt = grounded ? fakeFrictionAmt : fakeFrictionAmtAir;
+                Vector3 newVelXZ = rb.velocity.normalized * (rb.velocity.magnitude - (frictionAmt * Time.fixedDeltaTime));
+                rb.velocity = new Vector3(newVelXZ.x, rb.velocity.y, newVelXZ.z);
+            }
+            else
+            {
+                float frictionAmt = grounded ? ambientFrictionAmtGround : ambientFrictionAmtAir;
                 Vector3 newVelXZ = rb.velocity.normalized * (rb.velocity.magnitude - (frictionAmt * Time.fixedDeltaTime));
                 rb.velocity = new Vector3(newVelXZ.x, rb.velocity.y, newVelXZ.z);
             }
