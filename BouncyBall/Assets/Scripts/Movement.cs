@@ -26,6 +26,9 @@ public class Movement : MonoBehaviour
     Vector3 jumpVector;
     Vector3 velLastFrame;
 
+    [SerializeField] float regroundableTimer; // Once you leave the ground, when groundable again?
+    bool regroundable = true;
+
     bool inBounceSequence = false;
 
     // For Perfect Bounce
@@ -157,23 +160,19 @@ public class Movement : MonoBehaviour
         {
             if (!inBounceSequence)
             {
-                //rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
                 rb.AddForce(jumpVector * jumpForce);
-                grounded = false;
+                SetGrounded(false);
                 print("JUMP: JUMP");
             }
             else
             {
-                //rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForceOnBounce * Time.deltaTime, 0f));
                 rb.AddForce(jumpVector * jumpForceOnBounce);
-                grounded = false;
+                SetGrounded(false);
                 print("JUMP: BOUNCE");
             }
 
             inBounceSequence = true;
         }
-        //print("Vel: " + rb.velocity);
-        //print("Accel: " + (rb.velocity - spdLastFrame) * 1000);
         spdLastFrame = rb.velocity;
         Physics.Simulate(Time.fixedDeltaTime);
     }
@@ -182,16 +181,15 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
-            grounded = false;
+            SetGrounded(false);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
         if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
-            grounded = true;
+            SetGrounded(true);
             braking = false;
         }
         if (collision.gameObject.tag == "Speed Booster" && !collision.gameObject.GetComponent<SpeedBoost>().needsBounce)
@@ -210,7 +208,6 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Speed Booster" && collision.gameObject.GetComponent<SpeedBoost>().needsBounce && rb.velocity.y >= Mathf.Abs(1f))
         {
-            //Debug.Log("Y VEL: " + rb.velocity.y);
             float addedForce = collision.gameObject.GetComponent<SpeedBoost>().addedForce;
             rb.AddForce(new Vector3(0f,
                     addedForce * collision.gameObject.GetComponent<SpeedBoost>().directionSpecifier.y * Time.deltaTime,
@@ -218,20 +215,43 @@ public class Movement : MonoBehaviour
         }
 
         jumpVector = collision.GetContact(0).normal;
-
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
+        if (collision.gameObject.tag == "Untagged")
         {
-            //grounded = true;
-            print(rb.velocity);
+            SetGrounded(true);
             print("Normal: " + collision.GetContact(0).normal);
             jumpVector = collision.GetContact(0).normal;
-            //jumpVector = Vector3.Reflect(velLastFrame, collision.GetContact(0).normal) /** jumpForce*/;
-            //Vector3.Reflect(rb.velocity.normalized, collision.GetContact(0).normal);
             braking = false;
         }
+    }
+
+    void SetGrounded(bool state)
+    {
+        if (state == true && !regroundable)
+        {
+            return;
+        }
+        grounded = state;
+        if (state == false)
+        {
+            StartCoroutine("HandleRegroundableTimer");
+        }
+    }
+
+    IEnumerator HandleRegroundableTimer()
+    {
+        float timer = 0;
+        regroundable = false;
+
+        while (timer < regroundableTimer)
+        {
+            timer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        regroundable = true;
     }
 }
