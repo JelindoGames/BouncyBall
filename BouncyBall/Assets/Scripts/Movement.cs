@@ -139,6 +139,10 @@ public class Movement : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.red;
         }
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.white, 0.5f);
+        }
         else
         {
             GetComponent<Renderer>().material.color = Color.white;
