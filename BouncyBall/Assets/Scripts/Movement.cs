@@ -23,6 +23,10 @@ public class Movement : MonoBehaviour
     [SerializeField] int framesNeededGroundedForPeriod;
     [SerializeField] bool braking;
     public SphereCollider breakCol;
+    Vector3 jumpVector;
+    Vector3 velLastFrame;
+
+    bool inBounceSequence = false;
 
     // For Perfect Bounce
     [SerializeField] float perfectBounceMaxWait;
@@ -52,6 +56,8 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine("WaitForGroundedTwoFrames");
         }
+        print("Vel: " + velLastFrame);
+        velLastFrame = rb.velocity;
     }
 
     IEnumerator PerfectBounceTimer()
@@ -129,19 +135,41 @@ public class Movement : MonoBehaviour
             }
         }
 
+        if (inPerfectBounceWindow)
+        {
+            GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            GetComponent<Renderer>().material.color = Color.white;
+        }
+
+        if (grounded && !Input.GetKey(KeyCode.Space))
+        {
+            inBounceSequence = false;
+        }
+
         if (grounded && inPerfectBounceWindow)
         {
-            if (groundedForPeriod)
+            if (!inBounceSequence)
             {
-                rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
+                //rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForce * Time.deltaTime, 0f));
+                rb.AddForce(jumpVector * jumpForce);
+                grounded = false;
+                print("JUMP: JUMP");
             }
             else
             {
-                rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForceOnBounce * Time.deltaTime, 0f));
+                //rb.AddForce(new Vector3(0f, Input.GetAxis("Jump") * jumpForceOnBounce * Time.deltaTime, 0f));
+                rb.AddForce(jumpVector * jumpForceOnBounce);
+                grounded = false;
+                print("JUMP: BOUNCE");
             }
+
+            inBounceSequence = true;
         }
-        print("Vel: " + rb.velocity);
-        print("Accel: " + (rb.velocity - spdLastFrame) * 1000);
+        //print("Vel: " + rb.velocity);
+        //print("Accel: " + (rb.velocity - spdLastFrame) * 1000);
         spdLastFrame = rb.velocity;
         Physics.Simulate(Time.fixedDeltaTime);
     }
@@ -178,12 +206,14 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Speed Booster" && collision.gameObject.GetComponent<SpeedBoost>().needsBounce && rb.velocity.y >= Mathf.Abs(1f))
         {
-            Debug.Log("Y VEL: " + rb.velocity.y);
+            //Debug.Log("Y VEL: " + rb.velocity.y);
             float addedForce = collision.gameObject.GetComponent<SpeedBoost>().addedForce;
             rb.AddForce(new Vector3(0f,
                     addedForce * collision.gameObject.GetComponent<SpeedBoost>().directionSpecifier.y * Time.deltaTime,
                     0f), ForceMode.Impulse);
         }
+
+        jumpVector = collision.GetContact(0).normal;
 
     }
 
@@ -191,7 +221,12 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Untagged")
         {
-            grounded = true;
+            //grounded = true;
+            print(rb.velocity);
+            print("Normal: " + collision.GetContact(0).normal);
+            jumpVector = collision.GetContact(0).normal;
+            //jumpVector = Vector3.Reflect(velLastFrame, collision.GetContact(0).normal) /** jumpForce*/;
+            //Vector3.Reflect(rb.velocity.normalized, collision.GetContact(0).normal);
             braking = false;
         }
     }
