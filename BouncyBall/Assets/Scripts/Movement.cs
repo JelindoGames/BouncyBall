@@ -28,7 +28,6 @@ public class Movement : MonoBehaviour
 
     [SerializeField] float regroundableTimer; // Once you leave the ground, when groundable again?
     bool regroundable = true;
-
     bool inBounceSequence = false;
 
     // For Perfect Bounce
@@ -46,6 +45,11 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && canPressPerfectBounce)
         {
             StartCoroutine("PerfectBounceTimer");
@@ -102,6 +106,11 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
         breakCol.radius = (2.642857143E-4f * Breakable.KineticEnergy(rb)) + 0.5704761905f;
 
         if (Input.GetAxis("Jump") > 0.005)
@@ -179,6 +188,11 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
         if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
             SetGrounded(false);
@@ -187,7 +201,12 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
+        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
             SetGrounded(true);
             braking = false;
@@ -217,8 +236,27 @@ public class Movement : MonoBehaviour
         jumpVector = collision.GetContact(0).normal;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeathPlane"))
+        {
+            FindObjectOfType<LevelManager>().PlayerHitsDeathPlane();
+            rb.velocity = Vector3.zero;
+        }
+        else if (other.CompareTag("LevelEnd"))
+        {
+            FindObjectOfType<LevelManager>().PlayerHitsLevelEnd();
+            rb.velocity = Vector3.zero;
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
         if (collision.gameObject.tag == "Untagged")
         {
             SetGrounded(true);
@@ -230,6 +268,11 @@ public class Movement : MonoBehaviour
 
     void SetGrounded(bool state)
     {
+        if (!LevelManager.levelPlaying)
+        {
+            return;
+        }
+
         if (state == true && !regroundable)
         {
             return;

@@ -7,6 +7,8 @@ TagManager:
   - Speed Booster
   - Breakable
   - Crush
+  - DeathPlane
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
