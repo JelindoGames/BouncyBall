@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfdec18d453f400abdd70ab23459bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelID: 0
+  nextLevelID: 1
   winText: {fileID: 1039502722}
   deathText: {fileID: 1257630751}
 --- !u!1 &2098876847
