@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator VictorySequence()
     {
-        print("Victory");
         winText.SetActive(true);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

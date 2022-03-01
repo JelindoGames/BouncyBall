@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 133347283e115d147a5fcce7f47a538f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17706428, g: 0.22165489, b: 0.3039223, a: 1}
+  m_IndirectSpecularColor: {r: 0.5542706, g: 1.0391122, b: 1.0477147, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -274,7 +274,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Level 1-1
+  m_Text: 'Level 1-3
 
     (Prototype)'
 --- !u!222 &371162833
@@ -4375,9 +4375,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfdec18d453f400abdd70ab23459bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelID: 0
+  nextLevelID: 3
   winText: {fileID: 1864581399}
-  deathText: {fileID: 371162830}
+  deathText: {fileID: 206136195}
 --- !u!4 &2022232048
 Transform:
   m_ObjectHideFlags: 0
