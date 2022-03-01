@@ -276,7 +276,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Level 1-3
 
-    (Prototype)'
+    Press R to Restart'
 --- !u!222 &371162833
 CanvasRenderer:
   m_ObjectHideFlags: 0
