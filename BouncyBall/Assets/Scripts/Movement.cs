@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float regroundableTimer; // Once you leave the ground, when groundable again?
     bool regroundable = true;
     bool inBounceSequence = false;
+
+    [SerializeField] Text speedText;
 
     // For Perfect Bounce
     [SerializeField] float perfectBounceMaxWait;
@@ -63,7 +66,7 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine("WaitForGroundedTwoFrames");
         }
-        print("Vel: " + velLastFrame);
+        speedText.text = "Speed: " + rb.velocity.magnitude;
         velLastFrame = rb.velocity;
     }
 
@@ -240,13 +243,13 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("DeathPlane"))
         {
-            FindObjectOfType<LevelManager>().PlayerHitsDeathPlane();
+            StartCoroutine(FindObjectOfType<LevelManager>().PlayerHitsDeathPlane());
             rb.velocity = Vector3.zero;
         }
         else if (other.CompareTag("LevelEnd"))
         {
-            FindObjectOfType<LevelManager>().PlayerHitsLevelEnd();
-            rb.velocity = Vector3.zero;
+            FindObjectOfType<LevelManager>().PlayerHitsLevelEnd(other.gameObject, gameObject);
+            //rb.velocity = Vector3.zero;
         }
     }
 

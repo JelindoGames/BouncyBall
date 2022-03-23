@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] Vector3 offset;
+    GameObject player;
+    public Vector3 offsetPos;
+    public Quaternion offsetRot;
+    public Vector3 offsetSca;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Update()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = player.transform.position + offsetPos;
+        transform.rotation = offsetRot;
+        transform.localScale = offsetSca;
     }
 }
