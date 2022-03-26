@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     [SerializeField] bool groundedForPeriod;
     [SerializeField] int framesNeededGroundedForPeriod;
     [SerializeField] bool braking;
+    [SerializeField] GameObject perfectBounceParticles;
     public SphereCollider breakCol;
     Vector3 jumpVector;
     Vector3 velLastFrame;
@@ -178,6 +179,8 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                GameObject particles = Instantiate(perfectBounceParticles);
+                particles.transform.position = transform.position;
                 rb.AddForce(jumpVector * jumpForceOnBounce);
                 SetGrounded(false);
                 print("JUMP: BOUNCE");
