@@ -15,8 +15,6 @@ public class Movement : MonoBehaviour
     [SerializeField] float fakeFrictionAmtAir;
     [SerializeField] float ambientFrictionAmtGround;
     [SerializeField] float ambientFrictionAmtAir;
-    Vector3 spdLastFrame;
-    Collider col;
     public PhysicMaterial bouncey;
     public PhysicMaterial defaultMat;
     [SerializeField] bool grounded;
@@ -26,13 +24,13 @@ public class Movement : MonoBehaviour
     [SerializeField] GameObject perfectBounceParticles;
     public SphereCollider breakCol;
     Vector3 jumpVector;
-    Vector3 velLastFrame;
 
     [SerializeField] float regroundableTimer; // Once you leave the ground, when groundable again?
     bool regroundable = true;
     bool inBounceSequence = false;
 
     [SerializeField] Text speedText;
+    [SerializeField] BounceSoundPlayer bounceSoundPlayer;
 
     // For Perfect Bounce
     [SerializeField] float perfectBounceMaxWait;
@@ -43,7 +41,6 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<SphereCollider>();
         Physics.autoSimulation = false;
     }
 
@@ -68,7 +65,6 @@ public class Movement : MonoBehaviour
             StartCoroutine("WaitForGroundedTwoFrames");
         }
         speedText.text = "Speed: " + rb.velocity.magnitude;
-        velLastFrame = rb.velocity;
     }
 
     IEnumerator PerfectBounceTimer()
@@ -174,6 +170,7 @@ public class Movement : MonoBehaviour
             if (!inBounceSequence)
             {
                 rb.AddForce(jumpVector * jumpForce);
+                bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Jump);
                 SetGrounded(false);
                 print("JUMP: JUMP");
             }
@@ -182,13 +179,16 @@ public class Movement : MonoBehaviour
                 GameObject particles = Instantiate(perfectBounceParticles);
                 particles.transform.position = transform.position;
                 rb.AddForce(jumpVector * jumpForceOnBounce);
+                bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
                 SetGrounded(false);
                 print("JUMP: BOUNCE");
             }
 
             inBounceSequence = true;
         }
-        spdLastFrame = rb.velocity;
+        else if (grounded && !inPerfectBounceWindow && Input.GetKey(KeyCode.Space)) {
+            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
+        }
         Physics.Simulate(Time.fixedDeltaTime);
     }
 
@@ -252,7 +252,6 @@ public class Movement : MonoBehaviour
         else if (other.CompareTag("LevelEnd"))
         {
             FindObjectOfType<LevelManager>().PlayerHitsLevelEnd(other.gameObject, gameObject);
-            //rb.velocity = Vector3.zero;
         }
     }
 
@@ -282,6 +281,11 @@ public class Movement : MonoBehaviour
         if (state == true && !regroundable)
         {
             return;
+        }
+
+        if (state == true && !grounded && !Input.GetKey(KeyCode.Space))
+        {
+            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Landing);
         }
         grounded = state;
         if (state == false)
