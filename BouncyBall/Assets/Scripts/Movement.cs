@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     [SerializeField] int framesNeededGroundedForPeriod;
     [SerializeField] bool braking;
     [SerializeField] GameObject perfectBounceParticles;
+    [SerializeField] Material playerMat;
     public SphereCollider breakCol;
     Vector3 jumpVector;
 
@@ -149,15 +150,15 @@ public class Movement : MonoBehaviour
 
         if (inPerfectBounceWindow)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            playerMat.color = Color.red;
         }
         else if (Input.GetKey(KeyCode.Space))
         {
-            GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.white, 0.5f);
+            playerMat.color = Color.Lerp(Color.red, Color.white, 0.5f);
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.white;
+            playerMat.color = Color.white;
         }
 
         if (grounded && !Input.GetKey(KeyCode.Space))
