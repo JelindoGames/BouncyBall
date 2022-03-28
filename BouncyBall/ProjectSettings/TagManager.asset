@@ -9,6 +9,7 @@ TagManager:
   - Crush
   - DeathPlane
   - LevelEnd
+  - Level Manager
   layers:
   - Default
   - TransparentFX

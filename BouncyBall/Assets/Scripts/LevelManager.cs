@@ -23,13 +23,13 @@ public class LevelManager : MonoBehaviour
     public static Transform currentSpawn;
     public static FakeTransform currentCamPos;
 
-    public static int currentLevelIdx;
+    public int currentLevelIdx;
     public float alteringSpeed = 0.2f;
 
+    float currentTime;
 
     private void Awake()
     {
-        currentLevelIdx = 0;
         levelPlaying = true;
         winText.SetActive(false);
         deathText.SetActive(false);
@@ -37,6 +37,9 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
+        currentTime = PlayerPrefs.GetFloat("time", 0);
+
         player = GameObject.FindGameObjectWithTag("Player");
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
         st = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StoryTalk>();
@@ -75,6 +78,11 @@ public class LevelManager : MonoBehaviour
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
+        currentTime += Time.deltaTime;
+        PlayerPrefs.SetFloat("time", currentTime);
+        PlayerPrefs.GetInt("currentSpawn", currentLevelIdx);
+        PlayerPrefs.Save();
+        timeText.text = "Time: " + currentTime;
     }
 
     public void PlayerHitsLevelEnd(GameObject collided, GameObject character)

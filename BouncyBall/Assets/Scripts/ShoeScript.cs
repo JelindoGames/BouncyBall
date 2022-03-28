@@ -7,6 +7,7 @@ public class ShoeScript : MonoBehaviour
     float startingHeight;
     bool movingUp = false;
     Rigidbody rb;
+    private LevelManager levelMan;
 
     public float movementSpeedUp;
     public float movementSpeedDown;
@@ -16,12 +17,13 @@ public class ShoeScript : MonoBehaviour
     {
         startingHeight = transform.position.y;
         rb = GetComponent<Rigidbody>();
+        levelMan = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (LevelManager.currentLevelIdx == level) {
+        if (levelMan.currentLevelIdx == level) {
             if (transform.position.y >= startingHeight || !movingUp)
             {
                 rb.AddForce(Vector3.down * movementSpeedDown, ForceMode.Force);
