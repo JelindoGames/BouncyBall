@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5542706, g: 1.0391122, b: 1.0477147, a: 1}
+  m_IndirectSpecularColor: {r: 0.55444586, g: 1.039715, b: 1.0463599, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -909,6 +909,7 @@ MonoBehaviour:
   timeText: {fileID: 0}
   levelStarts: []
   cameraPos: []
+  alteringSpeed: 0.2
 --- !u!4 &430930616
 Transform:
   m_ObjectHideFlags: 0
@@ -2877,6 +2878,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: breakCol
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: playerMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cc5f29bbba15474c82108d75ba368fe, type: 2}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: fakeFrictionAmt
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: bounceSoundPlayer
+      value: 
+      objectReference: {fileID: 1475993632}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: fakeFrictionAmtAir
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: perfectBounceParticles
+      value: 
+      objectReference: {fileID: 737929483526733873, guid: 8299b9583ff85436db54d32a16df9dab, type: 3}
     - target: {fileID: 676293007780245954, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2927,6 +2956,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+--- !u!1 &1475993631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 676293007780245954, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+  m_PrefabInstance: {fileID: 1475993630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475993632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475993631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334a1ecefe559464c8b34add29baaf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perfectBounce: {fileID: 0}
+  stdBounce: {fileID: 0}
+  jumpBounce: {fileID: 0}
+  landing: {fileID: 0}
+  audioPlayer: {fileID: 0}
+  minTimeBtwn: 0
 --- !u!1 &1484896229
 GameObject:
   m_ObjectHideFlags: 0

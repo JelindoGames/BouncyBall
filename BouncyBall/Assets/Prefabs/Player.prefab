@@ -407,14 +407,19 @@ MonoBehaviour:
   fakeFrictionAmtAir: 10
   ambientFrictionAmtGround: 4
   ambientFrictionAmtAir: 0.5
+  deathFalling: {fileID: 8300000, guid: 6ddd944f942964258adb3a175b7991ea, type: 3}
   bouncey: {fileID: 13400000, guid: bfe6eda6fc96f4adc97314815763f696, type: 2}
   defaultMat: {fileID: 13400000, guid: 178ba8f9db59344d186dc96263e9c4f8, type: 2}
   grounded: 1
   groundedForPeriod: 1
   framesNeededGroundedForPeriod: 5
   braking: 0
+  perfectBounceParticles: {fileID: 0}
+  playerMat: {fileID: 0}
   breakCol: {fileID: 676293006569265730}
   regroundableTimer: 0.1
+  speedText: {fileID: 0}
+  bounceSoundPlayer: {fileID: 0}
   perfectBounceMaxWait: 0.3
   perfectBounceInputBuffer: 0
   inPerfectBounceWindow: 0

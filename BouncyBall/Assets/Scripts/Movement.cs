@@ -15,8 +15,12 @@ public class Movement : MonoBehaviour
     [SerializeField] float fakeFrictionAmtAir;
     [SerializeField] float ambientFrictionAmtGround;
     [SerializeField] float ambientFrictionAmtAir;
+
+    public AudioClip deathFalling;
+
     public PhysicMaterial bouncey;
     public PhysicMaterial defaultMat;
+
     [SerializeField] bool grounded;
     [SerializeField] bool groundedForPeriod;
     [SerializeField] int framesNeededGroundedForPeriod;
@@ -247,6 +251,7 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("DeathPlane"))
         {
+            AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
             StartCoroutine(FindObjectOfType<LevelManager>().PlayerHitsDeathPlane());
             rb.velocity = Vector3.zero;
         }
