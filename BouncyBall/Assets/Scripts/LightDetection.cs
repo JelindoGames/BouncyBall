@@ -4,11 +4,10 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(Light))]
-public class SpotlightLineOfSight : MonoBehaviour
+public class LightDetection : MonoBehaviour
 {
     public static event Action<GameObject> PlayerIsInLight;
 
-    [SerializeField]
     private string playerTag = "Player";
 
     private Light light;
