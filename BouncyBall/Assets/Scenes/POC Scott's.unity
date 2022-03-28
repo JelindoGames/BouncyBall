@@ -760,10 +760,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 125.24, y: 5.95, z: 160.33}
   m_LocalScale: {x: 10, y: 10, z: 1}
-  m_Children:
-  - {fileID: 2066236774}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &69905428
 MonoBehaviour:
@@ -779,6 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakEnergy: 10
   breakingSFX: {fileID: 8300000, guid: d291c703f12e14db386cee0d56635d93, type: 3}
+  particalEffect: {fileID: 2066236773}
 --- !u!43 &81754829
 Mesh:
   m_ObjectHideFlags: 0
@@ -14117,7 +14117,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3849805a6cf9ed42b64886d16aa24c0, type: 2}
+  - {fileID: 2100000, guid: a569f17ea6f754393874eb874f5b6c73, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14138,13 +14138,13 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 2
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -14171,7 +14171,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066236771}
   serializedVersion: 7
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -14179,7 +14179,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14351,9 +14351,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.40957633, g: 0.44553536, b: 0.49056602, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14731,13 +14731,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14798,7 +14798,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 8, y: 0.75, z: 8}
+    m_Scale: {x: 8, y: 1, z: 8}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -14874,8 +14874,8 @@ ParticleSystem:
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
-    randomPositionAmount: 0.57
+    sphericalDirectionAmount: 0.43
+    randomPositionAmount: 0.24
     radius:
       value: 1
       mode: 0
@@ -18885,12 +18885,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066236771}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0040000915, y: 0.01500001, z: -0.009994507}
-  m_LocalScale: {x: 0.1, y: 1, z: 0.1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 125.27, y: 8.28, z: 153.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 69905427}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &2077400433
 GameObject:
@@ -23992,5 +23992,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: End Level Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 7139375812540887231, guid: 20d1e930b298c4b768af4846af6a9569, type: 3}
+      propertyPath: breakingSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 169945efc899e49bba37adb6b206e3b7, type: 3}
+    - target: {fileID: 7139375812540887231, guid: 20d1e930b298c4b768af4846af6a9569, type: 3}
+      propertyPath: particalEffect
+      value: 
+      objectReference: {fileID: 1818875208}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d1e930b298c4b768af4846af6a9569, type: 3}
