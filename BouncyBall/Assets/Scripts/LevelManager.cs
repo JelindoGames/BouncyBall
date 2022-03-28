@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public static FakeTransform currentCamPos;
 
     public static int currentLevelIdx;
+    public float alteringSpeed = 0.2f;
 
 
     private void Awake()
@@ -50,14 +51,29 @@ public class LevelManager : MonoBehaviour
         st.EnableCanvas(false);
     }
 
+    public void UpdateCam()
+    {
+        if (cam.offsetPos != cameraPos[currentLevelIdx].offsetPos)
+        {
+            cam.offsetPos += (cameraPos[currentLevelIdx].offsetPos - cam.offsetPos) * alteringSpeed;
+        }
+        if (cam.offsetRot != cameraPos[currentLevelIdx].offsetRot)
+        {
+            cam.offsetRot = Quaternion.Slerp(cam.offsetRot, cameraPos[currentLevelIdx].offsetRot, alteringSpeed);
+        }
+        cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
+    }
+
     private void Update()
     {
+        currentSpawn = levelStarts[currentLevelIdx];
+        currentCamPos = cameraPos[currentLevelIdx];
+        UpdateCam();
         if (Input.GetKeyDown(KeyCode.R))
         {
             player.transform.position = levelStarts[currentLevelIdx].position;
-            cam.offsetPos = cameraPos[currentLevelIdx].offsetPos;
-            cam.offsetRot = cameraPos[currentLevelIdx].offsetRot;
-            cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
 
@@ -87,14 +103,9 @@ public class LevelManager : MonoBehaviour
         currentLevelIdx = collided.transform.parent.GetComponent<LevelStart>().levelNum - 1;
 
         player.transform.position = levelStarts[currentLevelIdx].position;
-        cam.offsetPos = cameraPos[currentLevelIdx].offsetPos;
-        cam.offsetRot = cameraPos[currentLevelIdx].offsetRot;
-        cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
-
-        currentSpawn = levelStarts[currentLevelIdx];
-        currentCamPos = cameraPos[currentLevelIdx];
 
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         yield return null;
 
