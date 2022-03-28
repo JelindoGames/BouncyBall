@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
+
+    
     public float breakEnergy;
+
+    public AudioClip breakingSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,7 @@ public class Breakable : MonoBehaviour
         }
         if (other.gameObject.tag == "Crush" && KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()) >= breakEnergy)
         {
+            AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
             Destroy(gameObject);
         }
     }
