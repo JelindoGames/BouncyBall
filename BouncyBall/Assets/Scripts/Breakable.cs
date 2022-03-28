@@ -31,7 +31,7 @@ public class Breakable : MonoBehaviour
         {
             particalEffect.Play();
             AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject);
         }
     }
 
