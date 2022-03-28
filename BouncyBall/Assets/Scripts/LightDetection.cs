@@ -25,7 +25,9 @@ public class LightDetection : MonoBehaviour
     {
         if (this.IsPlayerInLight())
         {
-            this.BroadcastPlayerSpotted();
+            //AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
+            StartCoroutine(FindObjectOfType<LevelManager>().PlayerHitsDeathPlane());
+            GameObject.FindGameObjectWithTag(playerTag).GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
@@ -41,9 +43,9 @@ public class LightDetection : MonoBehaviour
 
     private bool IsPlayerInLight()
     {
-        //Debug.Log("In cone: " + this.IsPlayerInCone() + ", In light: " + this.IsPlayerInLineOfSight());
+        Debug.Log("In cone: " + this.IsPlayerInCone() + ", In light: " + this.IsPlayerInLineOfSight());
         Debug.DrawLine(this.transform.position, this.player.transform.position);
-        return this.IsPlayerInCone() && this.IsPlayerInLineOfSight();
+        return this.IsPlayerInCone() || this.IsPlayerInLineOfSight();
     }
 
     private bool IsPlayerInCone()
