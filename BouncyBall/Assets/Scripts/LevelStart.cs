@@ -5,23 +5,28 @@ using UnityEngine;
 public class LevelStart : MonoBehaviour
 {
     LevelManager level;
-
     public int levelNum;
+    [SerializeField] GameObject audioPlayer;
+    [SerializeField] AudioClip sound;
+    [SerializeField] GameObject particles;
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         level = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnDestroy()
+    public void StartLevel()
     {
         level.currentLevelIdx = levelNum;
         LevelManager.levelPlaying = true;
+        AudioSource audio = Instantiate(audioPlayer, player.transform.position, Quaternion.identity).GetComponent<AudioSource>();
+        audio.clip = sound;
+        audio.Play();
+        Instantiate(particles, player.transform.position, Quaternion.identity);
+        FindObjectOfType<LevelDeclarator>().DeclareLevel(true);
+        Destroy(gameObject);
     }
 }
