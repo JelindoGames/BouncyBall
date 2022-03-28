@@ -43,10 +43,14 @@ public class Movement : MonoBehaviour
     public bool inPerfectBounceWindow;
     bool canPressPerfectBounce = true;
 
+    public List<ParticleSystem> dropParticles;
+    public float dropWaitTime;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         Physics.autoSimulation = false;
+        DropParticles(false);
     }
 
     private void Update()
@@ -61,6 +65,11 @@ public class Movement : MonoBehaviour
             StartCoroutine("PerfectBounceTimer");
         }
 
+        if (grounded)
+        {
+            DropParticles(false);
+        }
+
         if (!grounded)
         {
             groundedForPeriod = false;
@@ -70,6 +79,27 @@ public class Movement : MonoBehaviour
             StartCoroutine("WaitForGroundedTwoFrames");
         }
         speedText.text = "Speed: " + rb.velocity.magnitude;
+    }
+
+    void DropParticles(bool play)
+    {
+        foreach(ParticleSystem p in dropParticles)
+        {
+            if (play)
+            {
+                p.Play();
+            }
+            else
+            {
+                p.Stop();
+            }
+        }
+    }
+
+    void Drop()
+    {
+        rb.constraints = RigidbodyConstraints.None;
+        rb.AddForce(new Vector3(0f, -1 * dropForce * Time.deltaTime, 0f), ForceMode.Impulse);
     }
 
     IEnumerator PerfectBounceTimer()
@@ -127,12 +157,21 @@ public class Movement : MonoBehaviour
             gameObject.GetComponent<Collider>().material = defaultMat;
         }
 
-        if (Input.GetAxis("Drop") > 0.005 && !braking)
+        if (Input.GetButtonDown("Drop") && !braking)
         {
             braking = true;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            rb.AddForce(new Vector3(0f, -1 * dropForce * Time.deltaTime, 0f), ForceMode.Impulse);
+            if (!grounded)
+            {
+                DropParticles(true);
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                Invoke("Drop", dropWaitTime);
+            }
+            else
+            {
+                Drop();
+            }
         }
         else
         {

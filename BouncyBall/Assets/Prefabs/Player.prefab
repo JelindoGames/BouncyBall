@@ -423,6 +423,13 @@ MonoBehaviour:
   perfectBounceMaxWait: 0.3
   perfectBounceInputBuffer: 0
   inPerfectBounceWindow: 0
+  dropParticles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dropWaitTime: 0.5
 --- !u!54 &676293007780245955
 Rigidbody:
   m_ObjectHideFlags: 0
