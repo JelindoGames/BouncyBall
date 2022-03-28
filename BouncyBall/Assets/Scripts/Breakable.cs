@@ -1,25 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Breakable : MonoBehaviour
 {
     public float breakEnergy;
+    [SerializeField] UnityEvent onBroken;
 
     public AudioClip breakingSFX;
-
     public ParticleSystem particalEffect;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,9 +19,16 @@ public class Breakable : MonoBehaviour
         }
         if (other.gameObject.tag == "Crush" && KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()) >= breakEnergy)
         {
-            particalEffect.Play();
-            AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
-            Destroy(gameObject, 0.5f);
+            if (particalEffect != null)
+            {
+                particalEffect.Play();
+            }
+            if (breakingSFX != null)
+            {
+                AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
+            }
+            onBroken.Invoke();
+            Destroy(gameObject);
         }
     }
 

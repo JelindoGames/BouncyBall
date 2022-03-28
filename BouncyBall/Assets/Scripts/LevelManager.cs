@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int nextLevelID;
     public static bool levelPlaying;
     [SerializeField] GameObject winText;
+    [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
 
@@ -93,8 +94,10 @@ public class LevelManager : MonoBehaviour
     public IEnumerator PlayerHitsDeathPlane()
     {
         deathText.SetActive(true);
+        AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+        FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
         levelPlaying = true;
     }

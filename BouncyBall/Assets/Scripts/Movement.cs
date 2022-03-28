@@ -146,7 +146,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
-        breakCol.radius = (2.642857143E-4f * Breakable.KineticEnergy(rb)) + 1f;
+        breakCol.radius = (4.642857143E-4f * Breakable.KineticEnergy(rb)) + 2f;
 
         if (Input.GetAxis("Jump") > 0.005)
         {

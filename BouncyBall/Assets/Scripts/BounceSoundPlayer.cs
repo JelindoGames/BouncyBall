@@ -56,7 +56,7 @@ public class BounceSoundPlayer : MonoBehaviour
 
     void SpawnSound(AudioClip sound)
     {
-        AudioSource audio = ((GameObject)Instantiate(audioPlayer, transform.position, Quaternion.identity)).GetComponent<AudioSource>();
+        AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
         audio.clip = sound;
         audio.Play();
     }
