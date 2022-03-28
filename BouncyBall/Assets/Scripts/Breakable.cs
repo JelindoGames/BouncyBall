@@ -7,6 +7,8 @@ public class Breakable : MonoBehaviour
     public float breakEnergy;
 
     public AudioClip breakingSFX;
+
+    public ParticleSystem particalEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,9 @@ public class Breakable : MonoBehaviour
         }
         if (other.gameObject.tag == "Crush" && KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()) >= breakEnergy)
         {
+            particalEffect.Play();
             AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
-            Destroy(gameObject);
+            Destroy(gameObject, 0.5f);
         }
     }
 
