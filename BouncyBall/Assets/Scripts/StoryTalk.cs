@@ -38,8 +38,8 @@ public class StoryTalk : MonoBehaviour
 
     public void SetImage(Sprite img)
     {
-        storyImage.sprite = img;
-        storyImage.GetComponent<RectTransform>().sizeDelta = new Vector2(img.rect.width / 2, img.rect.height / 2);
+        /*storyImage.sprite = img;
+        storyImage.GetComponent<RectTransform>().sizeDelta = new Vector2(img.rect.width / 2, img.rect.height / 2);*/
     }
 
     public void SetText(string str, string name)

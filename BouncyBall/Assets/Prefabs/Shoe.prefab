@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeedUp: 5
   movementSpeedDown: 7
-  level: 2
+  level: 3
 --- !u!54 &2275997304041313733
 Rigidbody:
   m_ObjectHideFlags: 0

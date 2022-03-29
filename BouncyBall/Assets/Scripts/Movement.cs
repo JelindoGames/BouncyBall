@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine("WaitForGroundedTwoFrames");
         }
-        speedText.text = "Speed: " + rb.velocity.magnitude;
+        speedText.text = "Speed: " + (int)rb.velocity.magnitude;
     }
 
     void DropParticles(bool play)
@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
     void Drop()
     {
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(new Vector3(0f, -1 * dropForce * Time.deltaTime, 0f), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0f, -1 * dropForce, 0f), ForceMode.Impulse);
     }
 
     IEnumerator PerfectBounceTimer()
