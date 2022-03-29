@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.55445373, g: 1.0397248, b: 1.0463672, a: 1}
+  m_IndirectSpecularColor: {r: 0.5542706, g: 1.0391122, b: 1.0477147, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9468,7 +9468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelID: 1
   winText: {fileID: 1039502722}
-  deathAudio: {fileID: 0}
+  deathAudio: {fileID: 8300000, guid: 2112470e1b48740a08ddafa924877f16, type: 3}
   deathText: {fileID: 1257630751}
   timeText: {fileID: 1928200966}
   levelStarts:
