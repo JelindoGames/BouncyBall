@@ -106,8 +106,6 @@ public class LevelManager : MonoBehaviour
     {
         winText.SetActive(true);
         levelPlaying = false;
-        yield return null;
-        /*
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
         winText.SetActive(false);
@@ -121,7 +119,6 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         yield return null;
-        */
 
         //SceneManager.LoadScene(nextLevelID);
 
