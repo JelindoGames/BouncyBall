@@ -157,7 +157,7 @@ public class Movement : MonoBehaviour
             gameObject.GetComponent<Collider>().material = defaultMat;
         }
 
-        if (Input.GetButtonDown("Drop") && !braking)
+        if (Input.GetAxis("Drop") > 0.005 && !braking)
         {
             braking = true;
             rb.velocity = Vector3.zero;
