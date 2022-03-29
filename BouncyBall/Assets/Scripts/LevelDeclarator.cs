@@ -26,6 +26,11 @@ public class LevelDeclarator : MonoBehaviour
         }
     }
 
+    public void AdvanceLevel()
+    {
+        curLevel++;
+    }
+
     public void DeclareLevel(bool newLevel)
     {
         StartCoroutine(DeclareProcess(newLevel));

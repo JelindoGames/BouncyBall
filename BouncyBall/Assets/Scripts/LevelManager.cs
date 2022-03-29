@@ -106,6 +106,7 @@ public class LevelManager : MonoBehaviour
     {
         winText.SetActive(true);
         levelPlaying = false;
+        FindObjectOfType<LevelDeclarator>().AdvanceLevel();
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
         winText.SetActive(false);
