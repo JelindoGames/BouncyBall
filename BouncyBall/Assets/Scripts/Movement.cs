@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
     void Drop()
     {
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(new Vector3(0f, -1 * dropForce * Time.deltaTime, 0f), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0f, -1 * dropForce, 0f), ForceMode.Impulse);
     }
 
     IEnumerator PerfectBounceTimer()
