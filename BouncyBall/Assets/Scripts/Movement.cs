@@ -290,7 +290,7 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("DeathPlane"))
         {
-            AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
+            //AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
             StartCoroutine(FindObjectOfType<LevelManager>().PlayerHitsDeathPlane());
             rb.velocity = Vector3.zero;
         }
