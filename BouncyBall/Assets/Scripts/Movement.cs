@@ -78,7 +78,7 @@ public class Movement : MonoBehaviour
         {
             StartCoroutine("WaitForGroundedTwoFrames");
         }
-        speedText.text = "Speed: " + rb.velocity.magnitude;
+        speedText.text = "Speed: " + (int)rb.velocity.magnitude;
     }
 
     void DropParticles(bool play)
