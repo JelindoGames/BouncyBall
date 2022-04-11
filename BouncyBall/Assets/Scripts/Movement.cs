@@ -81,9 +81,9 @@ public class Movement : MonoBehaviour
         speedText.text = "Speed: " + (int)rb.velocity.magnitude;
     }
 
-    void DropParticles(bool play)
+    public void DropParticles(bool play)
     {
-        foreach(ParticleSystem p in dropParticles)
+        foreach (ParticleSystem p in dropParticles)
         {
             if (play)
             {
@@ -99,7 +99,8 @@ public class Movement : MonoBehaviour
     void Drop()
     {
         rb.constraints = RigidbodyConstraints.None;
-        rb.AddForce(new Vector3(0f, -1 * dropForce, 0f), ForceMode.Impulse);
+        if (!grounded)
+            rb.AddForce(new Vector3(0f, -1 * dropForce, 0f), ForceMode.Impulse);
     }
 
     IEnumerator PerfectBounceTimer()
@@ -168,10 +169,6 @@ public class Movement : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 Invoke("Drop", dropWaitTime);
             }
-            else
-            {
-                Drop();
-            }
         }
         else
         {
@@ -230,7 +227,8 @@ public class Movement : MonoBehaviour
 
             inBounceSequence = true;
         }
-        else if (grounded && !inPerfectBounceWindow && Input.GetKey(KeyCode.Space)) {
+        else if (grounded && !inPerfectBounceWindow && Input.GetKey(KeyCode.Space))
+        {
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
         }
         Physics.Simulate(Time.fixedDeltaTime);
@@ -258,6 +256,13 @@ public class Movement : MonoBehaviour
 
         if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
         {
+            if (braking)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.constraints = RigidbodyConstraints.None;
+            }
             SetGrounded(true);
             braking = false;
         }
@@ -290,6 +295,7 @@ public class Movement : MonoBehaviour
     {
         if (other.CompareTag("DeathPlane"))
         {
+            Debug.Log(other.gameObject + " hit death plane");
             //AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
             StartCoroutine(FindObjectOfType<LevelManager>().PlayerHitsDeathPlane());
             rb.velocity = Vector3.zero;
@@ -309,6 +315,13 @@ public class Movement : MonoBehaviour
 
         if (collision.gameObject.tag == "Untagged")
         {
+            if (braking)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.constraints = RigidbodyConstraints.None;
+            }
             SetGrounded(true);
             print("Normal: " + collision.GetContact(0).normal);
             jumpVector = collision.GetContact(0).normal;

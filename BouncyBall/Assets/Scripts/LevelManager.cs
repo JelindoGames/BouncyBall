@@ -78,6 +78,7 @@ public class LevelManager : MonoBehaviour
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            player.GetComponent<Movement>().DropParticles(false);
         }
         currentTime += Time.deltaTime;
         PlayerPrefs.SetFloat("time", currentTime);
