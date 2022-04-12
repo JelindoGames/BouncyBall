@@ -10,6 +10,7 @@ public class Breakable : MonoBehaviour
 
     public AudioClip breakingSFX;
     public ParticleSystem particalEffect;
+    public bool dontDestroy = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +29,8 @@ public class Breakable : MonoBehaviour
                 AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
             }
             onBroken.Invoke();
-            Destroy(gameObject);
+            if (!dontDestroy)
+                Destroy(gameObject);
         }
     }
 

@@ -23,6 +23,7 @@ public class BlockBoss : MonoBehaviour
     private float currentHeight;
 
     public Transform playerTeleportPoint;
+    private Transform player;
 
     public Phase phase;
     private int health;
@@ -30,6 +31,7 @@ public class BlockBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHeight = blocks[0].transform.position.y;
         phase = Phase.ORIGIN;
         health = 5;
@@ -61,11 +63,14 @@ public class BlockBoss : MonoBehaviour
 
     private IEnumerator Origin()
     {
+        body.enabled = true;
+        top.enabled = true;
         foreach (GameObject g in blocks)
         {
             g.transform.position = new Vector3(g.transform.position.x, currentHeight, g.transform.position.z);
         }
         middleBlock.transform.position = new Vector3(middleBlock.transform.position.x, currentHeight, middleBlock.transform.position.z);
+        yield return new WaitForSeconds(0.2f);
         phase = Phase.BLOCKS;
         yield return null;
     }
@@ -73,6 +78,8 @@ public class BlockBoss : MonoBehaviour
 
     private IEnumerator Blocks()
     {
+        body.enabled = false;
+        top.enabled = true;
         transform.position = new Vector3(transform.position.x, middleBlockHeight + 50, transform.position.z);
         List<GameObject> temp = new List<GameObject>();
         foreach(GameObject g in blocks)
@@ -100,7 +107,7 @@ public class BlockBoss : MonoBehaviour
             g.transform.position = new Vector3(g.transform.position.x, currentHeight, g.transform.position.z);
         }
         middleBlock.transform.position = new Vector3(middleBlock.transform.position.x, currentHeight, middleBlock.transform.position.z);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         phase = Phase.SHOT;
         yield return null;
     }
@@ -120,10 +127,30 @@ public class BlockBoss : MonoBehaviour
         for (int i = 0; i < shots; i++)
         {
             transform.Rotate(new Vector3(0f, 360f / shots, 0f));
-            Instantiate(shot, transform.position + (transform.forward * 5) + (transform.up * 10), new Quaternion());
+            GameObject g = Instantiate(shot, transform.position + (transform.forward * 5) + (transform.up * 10), new Quaternion());
+            g.transform.Rotate(0, (360f / shots) * i, 0f);
             yield return new WaitForSeconds(0.5f);
         }
         phase = Phase.STUN;
         yield return null;
+    }
+
+    public void Hit()
+    {
+        health--;
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        player.position = playerTeleportPoint.position;
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        player.GetComponent<Movement>().DropParticles(false);
+        phase = Phase.ORIGIN;
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("You won!");
     }
 }

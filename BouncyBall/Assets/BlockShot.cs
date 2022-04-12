@@ -5,18 +5,19 @@ using UnityEngine;
 public class BlockShot : MonoBehaviour
 {
     public float speed = 5;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         Invoke("Destruction", 10f);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
         Debug.Log("Movement");
-        GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+        rb.AddForce(transform.forward * speed * Time.deltaTime);
     }
 
     public void Destruction()
