@@ -192,6 +192,10 @@ public class Movement : MonoBehaviour
         {
             playerMat.color = Color.red;
         }
+        else if (braking)
+        {
+            playerMat.color = Color.gray;
+        }
         else if (Input.GetKey(KeyCode.Space))
         {
             playerMat.color = Color.Lerp(Color.red, Color.white, 0.5f);
