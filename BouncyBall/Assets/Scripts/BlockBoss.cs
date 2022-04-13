@@ -157,7 +157,7 @@ public class BlockBoss : MonoBehaviour
         player.position = playerTeleportPoint.position;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        player.GetComponent<Movement>().DropParticles(false);
+        //player.GetComponent<Movement>().DropParticles(false);
 
         Reset();
     }

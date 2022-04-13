@@ -43,7 +43,7 @@ public class LightDetection : MonoBehaviour
 
     private bool IsPlayerInLight()
     {
-        Debug.Log("In cone: " + this.IsPlayerInCone() + ", In light: " + this.IsPlayerInLineOfSight());
+        //Debug.Log("In cone: " + this.IsPlayerInCone() + ", In light: " + this.IsPlayerInLineOfSight());
         Debug.DrawLine(this.transform.position, this.player.transform.position);
         return this.IsPlayerInCone() || this.IsPlayerInLineOfSight();
     }

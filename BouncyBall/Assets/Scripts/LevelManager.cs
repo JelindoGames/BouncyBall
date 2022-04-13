@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -11,7 +10,6 @@ public class LevelManager : MonoBehaviour
     StoryTalk st;
 
 
-    [SerializeField] int nextLevelID;
     public static bool levelPlaying;
     [SerializeField] GameObject winText;
     [SerializeField] AudioClip deathAudio;
@@ -78,7 +76,7 @@ public class LevelManager : MonoBehaviour
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            player.GetComponent<Movement>().DropParticles(false);
+            //player.GetComponent<Movement>().DropParticles(false);
         }
         currentTime += Time.deltaTime;
         PlayerPrefs.SetFloat("time", currentTime);
