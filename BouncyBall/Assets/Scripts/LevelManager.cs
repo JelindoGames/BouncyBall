@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform cam;
     [SerializeField] GameObject audioPlayer;
 
-    [SerializeField] List<Transform> levelStarts;
+    [SerializeField] Transform[] levelStarts;
     [SerializeField] List<FakeTransform> cameraPos;
 
     [SerializeField] AudioClip levelReset;
