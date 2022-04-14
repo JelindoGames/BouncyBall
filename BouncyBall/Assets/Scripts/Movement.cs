@@ -123,7 +123,6 @@ public class Movement : MonoBehaviour
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Jump);
             movementInputHelper.ForceUngrounded();
             state = State.Bouncing;
-            print("Hi3");
         }
     }
 
@@ -154,13 +153,11 @@ public class Movement : MonoBehaviour
             particles.transform.position = transform.position;
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
             movementInputHelper.ForceUngrounded();
-            print("Hi1");
         }
         else if (movementInputHelper.inBounceWindow && movementInputHelper.grounded)
         {
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
             movementInputHelper.ForceUngrounded();
-            print("Hi2");
         }
         HandleXZMovement();
     }
@@ -200,7 +197,25 @@ public class Movement : MonoBehaviour
         }
         if (movementInputHelper.grounded)
         {
-            state = State.Rolling;
+            if (movementInputHelper.inPerfectBounceWindow && movementInputHelper.grounded)
+            {
+                bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
+                GameObject particles = Instantiate(perfectBounceParticles);
+                particles.transform.position = transform.position;
+                rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
+                movementInputHelper.ForceUngrounded();
+                state = State.Bouncing;
+            }
+            else if (movementInputHelper.inBounceWindow && movementInputHelper.grounded)
+            {
+                bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
+                movementInputHelper.ForceUngrounded();
+                state = State.Bouncing;
+            }
+            else
+            {
+                state = State.Rolling;
+            }
             hasStartedDropPhysical = false;
         }
     }

@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
+    [SerializeField] Text coinText;
     [SerializeField] Vector3 cameraStartPos;
     [SerializeField] Transform cam;
     [SerializeField] GameObject audioPlayer;
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<FakeTransform> cameraPos;
 
     [SerializeField] AudioClip levelReset;
+    [SerializeField] AudioClip coinCollected;
 
     public static Transform currentSpawn;
     public static FakeTransform currentCamPos;
@@ -31,6 +33,7 @@ public class LevelManager : MonoBehaviour
     public float alteringSpeed = 0.2f;
 
     float currentTime;
+    int coinScore = 0;
 
     private void Awake()
     {
@@ -59,6 +62,8 @@ public class LevelManager : MonoBehaviour
         currentCamPos = cameraPos[currentLevelIdx];
 
         st.EnableCanvas(false);
+
+        UpdateCoinText();
     }
 
     public void UpdateCam()
@@ -83,9 +88,7 @@ public class LevelManager : MonoBehaviour
         UpdateCam();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
-            audio.clip = levelReset;
-            audio.Play();
+            Play2DAudio(levelReset);
             cam.position = cameraStartPos;
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -107,14 +110,9 @@ public class LevelManager : MonoBehaviour
     public IEnumerator PlayerHitsDeathPlane()
     {
         deathText.SetActive(true);
-        AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);
+        Play2DAudio(deathAudio);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
-        /*
-        AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
-        audio.clip = levelReset;
-        audio.Play();
-        */
         cam.position = cameraStartPos;
         FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
@@ -142,6 +140,25 @@ public class LevelManager : MonoBehaviour
 
         //SceneManager.LoadScene(nextLevelID);
 
+    }
+
+    public void CoinCollected()
+    {
+        coinScore++;
+        UpdateCoinText();
+        Play2DAudio(coinCollected);
+    }
+
+    void UpdateCoinText()
+    {
+        coinText.text = "Score: " + coinScore;
+    }
+
+    void Play2DAudio(AudioClip clip)
+    {
+        AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
+        audio.clip = clip;
+        audio.Play();
     }
 }
 
