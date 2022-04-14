@@ -17,9 +17,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Text timeText;
     [SerializeField] Vector3 cameraStartPos;
     [SerializeField] Transform cam;
+    [SerializeField] GameObject audioPlayer;
 
     [SerializeField] List<Transform> levelStarts;
     [SerializeField] List<FakeTransform> cameraPos;
+
+    [SerializeField] AudioClip levelReset;
 
     public static Transform currentSpawn;
     public static FakeTransform currentCamPos;
@@ -80,6 +83,9 @@ public class LevelManager : MonoBehaviour
         UpdateCam();
         if (Input.GetKeyDown(KeyCode.R))
         {
+            AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
+            audio.clip = levelReset;
+            audio.Play();
             cam.position = cameraStartPos;
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -104,6 +110,11 @@ public class LevelManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+        /*
+        AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
+        audio.clip = levelReset;
+        audio.Play();
+        */
         cam.position = cameraStartPos;
         FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
