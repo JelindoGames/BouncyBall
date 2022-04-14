@@ -6262,7 +6262,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448446375}
-  m_LocalRotation: {x: 0.09904157, y: 0.74096984, z: -0.112097986, w: 0.6546667}
+  m_LocalRotation: {x: 0.17824739, y: -0.00000006958139, z: 0.0000000133001645, w: 0.9839858}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6490,8 +6490,8 @@ MonoBehaviour:
     Value: 0.5
     m_SpeedMode: 0
     m_MaxSpeed: 2
-    m_AccelTime: 0.4
-    m_DecelTime: 0.3
+    m_AccelTime: 0.5
+    m_DecelTime: 0.5
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -6505,7 +6505,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_YAxisRecentering:
-    m_enabled: 0
+    m_enabled: 1
     m_WaitTime: 1
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
@@ -6513,9 +6513,9 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.4
-    m_DecelTime: 0.3
+    m_MaxSpeed: 1000
+    m_AccelTime: 0.02
+    m_DecelTime: 0.02
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -6538,15 +6538,15 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 5
+  m_BindingMode: 4
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 1
-    m_Radius: 10
-  - m_Height: 3.5
-    m_Radius: 10
-  - m_Height: 6
-    m_Radius: 10
+  - m_Height: 3
+    m_Radius: 12
+  - m_Height: 5
+    m_Radius: 12
+  - m_Height: 7
+    m_Radius: 12
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 527999624}
@@ -6560,7 +6560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466930983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 114.926186, y: 5.14, z: -14.267954}
+  m_LocalPosition: {x: 124.85, y: 6.64, z: -27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 527999625}
@@ -6646,8 +6646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.5, z: -10}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 5, z: -12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -7090,7 +7090,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523942700}
-  m_LocalRotation: {x: 0.08714867, y: 0.74288154, z: -0.09863727, w: 0.65635574}
+  m_LocalRotation: {x: 0.16036718, y: -0.0000000785421, z: 0.0000000069405304, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7333,8 +7333,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527999623}
-  m_LocalRotation: {x: 0.110933244, y: 0.73880833, z: -0.12555732, w: 0.6527569}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.12985165, y: 0.7348484, z: -0.14696966, w: 0.6492583}
+  m_LocalPosition: {x: -11.908577, y: 0, z: 13.478455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 474292095}
@@ -9143,8 +9143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.5, z: -10}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 5, z: -12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -19680,8 +19680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.5, z: -10}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 5, z: -12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -25214,8 +25214,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054583953}
-  m_LocalRotation: {x: 0.099041566, y: 0.74096984, z: -0.11209798, w: 0.6546667}
-  m_LocalPosition: {x: 114.926186, y: 5.14, z: -14.267954}
+  m_LocalRotation: {x: 0.17824739, y: -0.00000006958146, z: 0.000000013300134, w: 0.9839857}
+  m_LocalPosition: {x: 124.85, y: 6.64, z: -27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25452,7 +25452,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -25522,6 +25522,8 @@ MonoBehaviour:
   deathAudio: {fileID: 8300000, guid: 2112470e1b48740a08ddafa924877f16, type: 3}
   deathText: {fileID: 1257630751}
   timeText: {fileID: 1928200966}
+  cameraStartPos: {x: 0, y: 0, z: 0}
+  cam: {fileID: 2054583954}
   levelStarts:
   - {fileID: 256582768}
   - {fileID: 2128117454}
@@ -26342,8 +26344,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2054583954}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
+      propertyPath: force
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: dropForce
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: playerMat
@@ -26355,7 +26361,7 @@ PrefabInstance:
       objectReference: {fileID: 1682375146}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: fakeFrictionAmt
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: bounceSoundPlayer
@@ -26363,7 +26369,7 @@ PrefabInstance:
       objectReference: {fileID: 676293008349000848}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: fakeFrictionAmtAir
-      value: 14
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 676293007780245952, guid: eed1420f9eb88464ca72819ca8be6ca4, type: 3}
       propertyPath: dropSuspensionLength

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     GameObject player;
-    CameraMove cam;
+    //CameraMove cam;
     StoryTalk st;
 
 
@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
+    [SerializeField] Vector3 cameraStartPos;
+    [SerializeField] Transform cam;
 
     [SerializeField] List<Transform> levelStarts;
     [SerializeField] List<FakeTransform> cameraPos;
@@ -36,17 +38,20 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        cam.position = cameraStartPos;
         currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
         player = GameObject.FindGameObjectWithTag("Player");
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
+        //cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
         st = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StoryTalk>();
 
         player.transform.position = levelStarts[currentLevelIdx].position;
+        /*
         cam.offsetPos = cameraPos[currentLevelIdx].offsetPos;
         cam.offsetRot = cameraPos[currentLevelIdx].offsetRot;
         cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
+        */
         currentSpawn = levelStarts[currentLevelIdx];
         currentCamPos = cameraPos[currentLevelIdx];
 
@@ -55,6 +60,7 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateCam()
     {
+        /*
         if (cam.offsetPos != cameraPos[currentLevelIdx].offsetPos)
         {
             cam.offsetPos += (cameraPos[currentLevelIdx].offsetPos - cam.offsetPos) * alteringSpeed;
@@ -64,6 +70,7 @@ public class LevelManager : MonoBehaviour
             cam.offsetRot = Quaternion.Slerp(cam.offsetRot, cameraPos[currentLevelIdx].offsetRot, alteringSpeed);
         }
         cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
+        */
     }
 
     private void Update()
@@ -73,6 +80,7 @@ public class LevelManager : MonoBehaviour
         UpdateCam();
         if (Input.GetKeyDown(KeyCode.R))
         {
+            cam.position = cameraStartPos;
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -96,6 +104,7 @@ public class LevelManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
+        cam.position = cameraStartPos;
         FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
         levelPlaying = true;

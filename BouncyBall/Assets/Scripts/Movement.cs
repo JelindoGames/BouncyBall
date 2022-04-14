@@ -201,6 +201,7 @@ public class Movement : MonoBehaviour
         if (movementInputHelper.grounded)
         {
             state = State.Rolling;
+            hasStartedDropPhysical = false;
         }
     }
 
