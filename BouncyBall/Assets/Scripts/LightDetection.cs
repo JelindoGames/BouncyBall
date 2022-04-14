@@ -17,7 +17,6 @@ public class LightDetection : MonoBehaviour
     {
         this.light = this.GetComponent<Light>();
         this.light.type = LightType.Spot;
-
         this.player = GameObject.FindGameObjectWithTag(this.playerTag);
     }
 

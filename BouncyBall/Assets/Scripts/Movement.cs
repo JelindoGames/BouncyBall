@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float ambientFrictionAmtGround;
     [SerializeField] float ambientFrictionAmtAir;
     [SerializeField] float dropSuspensionLength;
+    [SerializeField] Transform cam;
 
     [SerializeField] PhysicMaterial bouncey;
     [SerializeField] PhysicMaterial defaultMat;
@@ -46,6 +47,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
         movementInputHelper = GetComponent<MovementInputHelper>();
         specialMovementInteractions = GetComponent<SpecialMovementInteractions>();
@@ -114,16 +117,11 @@ public class Movement : MonoBehaviour
         HandleXZMovement();
         if (movementInputHelper.inPerfectBounceWindow)
         {
-            GameObject particles = Instantiate(perfectBounceParticles);
-            particles.transform.position = transform.position;
-            rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
-            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
-            state = State.Bouncing;
-        }
-        else if (movementInputHelper.inBounceWindow)
-        {
+            //GameObject particles = Instantiate(perfectBounceParticles);
+            //particles.transform.position = transform.position;
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForce);
-            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
+            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Jump);
+            movementInputHelper.ForceUngrounded();
             state = State.Bouncing;
         }
     }
@@ -149,14 +147,16 @@ public class Movement : MonoBehaviour
         }
         if (movementInputHelper.inPerfectBounceWindow && movementInputHelper.grounded)
         {
+            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
             GameObject particles = Instantiate(perfectBounceParticles);
             particles.transform.position = transform.position;
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
-            bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
+            movementInputHelper.ForceUngrounded();
         }
         else if (movementInputHelper.inBounceWindow && movementInputHelper.grounded)
         {
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
+            movementInputHelper.ForceUngrounded();
         }
         HandleXZMovement();
     }
@@ -208,8 +208,16 @@ public class Movement : MonoBehaviour
 
     void HandleXZMovement()
     {
+        Vector3 camFwdXZ = cam.transform.forward;
+        camFwdXZ.y = 0;
+        camFwdXZ = camFwdXZ.normalized;
+        Vector3 camRightXZ = cam.transform.right;
+        camRightXZ.y = 0;
+        camRightXZ = camRightXZ.normalized;
+        Vector3 forceFwd = camFwdXZ * Input.GetAxis("Vertical") * force * Time.fixedDeltaTime;
+        Vector3 forceRight = camRightXZ * Input.GetAxis("Horizontal") * force * Time.fixedDeltaTime;
+        rb.AddForce(forceFwd + forceRight);
         Vector2 velFwd = new Vector2(rb.velocity.x, rb.velocity.z);
-        rb.AddForce(new Vector3(Input.GetAxis("Horizontal") * force * Time.fixedDeltaTime, 0f, Input.GetAxis("Vertical") * force * Time.fixedDeltaTime));
         if (velFwd.magnitude > origSpeedCap)
         {
             float frictionAmt = movementInputHelper.grounded ? fakeFrictionAmt : fakeFrictionAmtAir;

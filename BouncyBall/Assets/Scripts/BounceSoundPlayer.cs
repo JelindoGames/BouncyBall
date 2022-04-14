@@ -17,20 +17,20 @@ public class BounceSoundPlayer : MonoBehaviour
     [SerializeField] AudioClip jumpBounce;
     [SerializeField] AudioClip landing;
     [SerializeField] GameObject audioPlayer;
-    [SerializeField] float minTimeBtwn; // Minimum time between plays (stops multiple frames in a row w/same sfx)
-    bool playable = true;
+    [SerializeField] float minTimeBtwnLands; // Minimum time between plays (stops multiple frames in a row w/same sfx)
+    bool landPlayable = true;
 
     public void Play(BounceType bt)
     {
-        if (!playable)
-        {
-            return;
-        }
-
         switch (bt)
         {
             case BounceType.Landing:
-                SpawnSound(landing);
+                if (landPlayable)
+                {
+                    landPlayable = false;
+                    SpawnSound(landing);
+                    Invoke("MakeLandPlayable", minTimeBtwnLands);
+                }
                 break;
             case BounceType.Bounce:
                 SpawnSound(stdBounce);
@@ -44,14 +44,11 @@ public class BounceSoundPlayer : MonoBehaviour
             default:
                 break;
         }
-
-        playable = false;
-        Invoke("MakePlayable", minTimeBtwn);
     }
 
-    void MakePlayable()
+    void MakeLandPlayable()
     {
-        playable = true;
+        landPlayable = true;
     }
 
     void SpawnSound(AudioClip sound)

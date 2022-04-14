@@ -9,8 +9,9 @@ public class MovementInputHelper : MonoBehaviour
     [SerializeField] float perfectBounceTimeBtwnWindows;
     [SerializeField] int framesNeededGroundedForPeriod;
     [SerializeField] float regroundableTimer;
+    [SerializeField] BounceSoundPlayer bsp;
     bool canPressPerfectBounce; // Can only press between windows
-    bool regroundable;
+    bool regroundable = true;
 
     //// To be seen by Movement.cs //////////////////
     public bool inPerfectBounceWindow { get; private set; }
@@ -22,6 +23,7 @@ public class MovementInputHelper : MonoBehaviour
     void Start()
     {
         canPressPerfectBounce = true;
+        bsp = GetComponent<BounceSoundPlayer>();
     }
 
     private void Update()
@@ -49,6 +51,16 @@ public class MovementInputHelper : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        HandleTouchingThings(collision, !inBounceWindow);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        HandleTouchingThings(collision, false);
+    }
+
+    void HandleTouchingThings(Collision collision, bool playSound)
+    {
         if (!LevelManager.levelPlaying)
         {
             return;
@@ -58,6 +70,7 @@ public class MovementInputHelper : MonoBehaviour
         {
             if (regroundable)
             {
+                if (playSound) bsp.Play(BounceSoundPlayer.BounceType.Landing);
                 grounded = true;
                 StartCoroutine("WaitForGroundedForPeriod");
             }
@@ -85,7 +98,6 @@ public class MovementInputHelper : MonoBehaviour
         while (frames < framesNeededGroundedForPeriod && grounded)
         {
             frames++;
-            groundedForPeriod = false;
             yield return new WaitForEndOfFrame();
         }
         groundedForPeriod = grounded;
@@ -97,5 +109,12 @@ public class MovementInputHelper : MonoBehaviour
         regroundable = false;
         yield return new WaitForSeconds(regroundableTimer);
         regroundable = true;
+    }
+
+    public void ForceUngrounded()
+    {
+        grounded = false;
+        groundedForPeriod = false;
+        StartCoroutine("HandleRegroundableTimer");
     }
 }
