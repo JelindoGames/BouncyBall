@@ -109,20 +109,21 @@ public class Movement : MonoBehaviour
         if (!movementInputHelper.grounded)
         {
             state = State.Bouncing;
+            return;
         }
         if (Input.GetAxis("Drop") > 0.005f)
         {
             state = State.RollBraking;
+            return;
         }
         HandleXZMovement();
         if (movementInputHelper.inPerfectBounceWindow)
         {
-            //GameObject particles = Instantiate(perfectBounceParticles);
-            //particles.transform.position = transform.position;
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForce);
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Jump);
             movementInputHelper.ForceUngrounded();
             state = State.Bouncing;
+            print("Hi3");
         }
     }
 
@@ -137,9 +138,10 @@ public class Movement : MonoBehaviour
 
     void HandleBounceState()
     {
-        if (movementInputHelper.groundedForPeriod)
+        if (movementInputHelper.groundedForPeriod && !Input.GetKey(KeyCode.Space))
         {
             state = State.Rolling;
+            return;
         }
         if (Input.GetAxis("Drop") > 0.005f)
         {
@@ -152,11 +154,13 @@ public class Movement : MonoBehaviour
             particles.transform.position = transform.position;
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
             movementInputHelper.ForceUngrounded();
+            print("Hi1");
         }
         else if (movementInputHelper.inBounceWindow && movementInputHelper.grounded)
         {
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.Bounce);
             movementInputHelper.ForceUngrounded();
+            print("Hi2");
         }
         HandleXZMovement();
     }
