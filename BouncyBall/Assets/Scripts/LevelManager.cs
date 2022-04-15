@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
 
     public static bool levelPlaying;
+    bool levelWon;
     [SerializeField] GameObject winText;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
@@ -38,6 +39,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        levelWon = false;
         levelPlaying = true;
         winText.SetActive(false);
         deathText.SetActive(false);
@@ -65,7 +67,7 @@ public class LevelManager : MonoBehaviour
     {
         currentSpawn = levelStarts[currentLevelIdx];
         currentCamPos = cameraPos[currentLevelIdx];
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !levelWon)
         {
             Play2DAudio(levelReset);
             cam.position = cameraStartPos;
@@ -106,6 +108,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)
     {
+        levelWon = true;
         winText.SetActive(true);
         levelPlaying = false;
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
