@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         DropSuspension,
         DropPhysical,
@@ -250,5 +250,10 @@ public class Movement : MonoBehaviour
             Vector3 newVelXZ = rb.velocity.normalized * (rb.velocity.magnitude - (frictionAmt * Time.fixedDeltaTime));
             rb.velocity = new Vector3(newVelXZ.x, rb.velocity.y, newVelXZ.z);
         }
+    }
+
+    public State currentState()
+    {
+        return state;
     }
 }

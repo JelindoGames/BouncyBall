@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/POC.unity
     guid: 06e24638896484079b8466140f79aac0
+  - enabled: 1
+    path: Assets/Scenes/POC Boss.unity
+    guid: abc56151fdbe94d1ba6aceea5e204f1a
   m_configObjects: {}

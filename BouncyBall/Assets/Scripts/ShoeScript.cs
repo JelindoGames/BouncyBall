@@ -12,7 +12,7 @@ public class ShoeScript : MonoBehaviour
     public float movementSpeedUp;
     public float movementSpeedDown;
     public float level;
-    // Start is called before the first frame update
+
     void Start()
     {
         startingHeight = transform.position.y;
@@ -20,7 +20,6 @@ public class ShoeScript : MonoBehaviour
         levelMan = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (levelMan.currentLevelIdx == level) {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -49,15 +50,9 @@ public class LevelManager : MonoBehaviour
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
         player = GameObject.FindGameObjectWithTag("Player");
-        //cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
         st = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StoryTalk>();
 
         player.transform.position = levelStarts[currentLevelIdx].position;
-        /*
-        cam.offsetPos = cameraPos[currentLevelIdx].offsetPos;
-        cam.offsetRot = cameraPos[currentLevelIdx].offsetRot;
-        cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
-        */
         currentSpawn = levelStarts[currentLevelIdx];
         currentCamPos = cameraPos[currentLevelIdx];
 
@@ -66,26 +61,10 @@ public class LevelManager : MonoBehaviour
         UpdateCoinText();
     }
 
-    public void UpdateCam()
-    {
-        /*
-        if (cam.offsetPos != cameraPos[currentLevelIdx].offsetPos)
-        {
-            cam.offsetPos += (cameraPos[currentLevelIdx].offsetPos - cam.offsetPos) * alteringSpeed;
-        }
-        if (cam.offsetRot != cameraPos[currentLevelIdx].offsetRot)
-        {
-            cam.offsetRot = Quaternion.Slerp(cam.offsetRot, cameraPos[currentLevelIdx].offsetRot, alteringSpeed);
-        }
-        cam.offsetSca = cameraPos[currentLevelIdx].offsetSca;
-        */
-    }
-
     private void Update()
     {
         currentSpawn = levelStarts[currentLevelIdx];
         currentCamPos = cameraPos[currentLevelIdx];
-        UpdateCam();
         if (Input.GetKeyDown(KeyCode.R))
         {
             Play2DAudio(levelReset);
@@ -102,9 +81,15 @@ public class LevelManager : MonoBehaviour
         timeText.text = "Time: " + currentTime;
     }
 
+    public void PlayerHitsLevelEnd()
+    {
+        StartCoroutine(VictorySequence(false, null, null)); // TODO this code is bad
+    }
+
+    // For story stuff
     public void PlayerHitsLevelEnd(GameObject collided, GameObject character)
     {
-        StartCoroutine(VictorySequence(collided, character));
+        StartCoroutine(VictorySequence(true, collided, character));
     }
 
     public IEnumerator PlayerHitsDeathPlane()
@@ -119,8 +104,12 @@ public class LevelManager : MonoBehaviour
         levelPlaying = true;
     }
 
-    IEnumerator VictorySequence(GameObject collided, GameObject character)
+    IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)
     {
+        if (!story)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
         winText.SetActive(true);
         levelPlaying = false;
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
