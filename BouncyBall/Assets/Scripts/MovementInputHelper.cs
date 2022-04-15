@@ -12,18 +12,21 @@ public class MovementInputHelper : MonoBehaviour
     [SerializeField] BounceSoundPlayer bsp;
     bool canPressPerfectBounce; // Can only press between windows
     bool regroundable = true;
+    Rigidbody rb;
 
     //// To be seen by Movement.cs //////////////////
     public bool inPerfectBounceWindow { get; private set; }
     public bool inBounceWindow { get; private set; }
     public bool grounded { get; private set; }
     public bool groundedForPeriod { get; private set; }
+    public Vector3 lastRBVelocityOffGround { get; private set; }
     /////////////////////////////////////////////////
 
     void Start()
     {
         canPressPerfectBounce = true;
         bsp = GetComponent<BounceSoundPlayer>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -39,6 +42,14 @@ public class MovementInputHelper : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (!grounded)
+        {
+            lastRBVelocityOffGround = rb.velocity;
+        }
+    }
+
     IEnumerator HandlePerfectBounceWindow()
     {
         inPerfectBounceWindow = true;
@@ -51,6 +62,7 @@ public class MovementInputHelper : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print("COLLISION: " + lastRBVelocityOffGround);
         HandleTouchingThings(collision, !inBounceWindow);
     }
 

@@ -151,6 +151,11 @@ public class Movement : MonoBehaviour
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
             GameObject particles = Instantiate(perfectBounceParticles);
             particles.transform.position = transform.position;
+            // TODO CLEAN THIS UP
+            if (Mathf.Abs(rb.velocity.y) < 1f)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, -movementInputHelper.lastRBVelocityOffGround.y * 0.8f, rb.velocity.z);
+            }
             rb.AddForce(specialMovementInteractions.jumpVector * jumpForceOnBounce);
             movementInputHelper.ForceUngrounded();
         }
