@@ -22,12 +22,10 @@ public class ColorChanger : MonoBehaviour
         {
             playerMat.color = Color.red;
         }
-        /*
-        else if (mvmt.braking)
+        else if (mvmt.currentState() == Movement.State.DropSuspension || mvmt.currentState() == Movement.State.DropPhysical)
         {
             playerMat.color = Color.gray;
         }
-        */
         else if (mih.inBounceWindow)
         {
             playerMat.color = Color.Lerp(Color.red, Color.white, 0.5f);
