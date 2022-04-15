@@ -106,14 +106,14 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)
     {
-        if (!story)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
         winText.SetActive(true);
         levelPlaying = false;
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        if (!story)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
 
         winText.SetActive(false);
 
