@@ -14,6 +14,8 @@ public class BlockBoss : MonoBehaviour
     public List<GameObject> blocks;
     public GameObject middleBlock;
     public GameObject shot;
+    public GameObject storyEnd;
+    public GameObject healthBackgroundImage;
 
     public float middleBlockHeight;
     public float topHeight;
@@ -25,7 +27,7 @@ public class BlockBoss : MonoBehaviour
     private Transform player;
 
     public Phase phase;
-    private int health;
+    public int health = 5;
 
     public GameObject healthImg;
 
@@ -35,7 +37,6 @@ public class BlockBoss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHeight = blocks[0].transform.position.y;
         phase = Phase.ORIGIN;
-        health = 5;
         StartCoroutine(Sequence());
     }
 
@@ -74,6 +75,7 @@ public class BlockBoss : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
         }
+        yield return null;
     }
 
 
@@ -89,11 +91,6 @@ public class BlockBoss : MonoBehaviour
             phase = Phase.SHOT;
         else
             phase = Phase.BLOCKS;
-        foreach (GameObject g in blocks)
-        {
-            g.transform.position = new Vector3(g.transform.position.x, currentHeight, g.transform.position.z);
-        }
-        middleBlock.transform.position = new Vector3(middleBlock.transform.position.x, currentHeight, middleBlock.transform.position.z);
         yield return null;
     }
 
@@ -174,7 +171,9 @@ public class BlockBoss : MonoBehaviour
         healthImg.GetComponent<Image>().fillAmount = (float)health / 5;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            storyEnd.SetActive(true);
+            Destroy(healthImg);
+            Destroy(healthBackgroundImage);
         }
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -211,10 +210,5 @@ public class BlockBoss : MonoBehaviour
         currentHeight = blocks[0].transform.position.y;
         health = 5;
         Reset();
-    }
-
-    private void OnDestroy()
-    {
-        Debug.Log("You won!");
     }
 }
