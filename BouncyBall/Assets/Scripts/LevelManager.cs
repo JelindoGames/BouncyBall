@@ -96,6 +96,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator PlayerHitsDeathPlane()
     {
+        Debug.Log("Here 1");
         deathText.SetActive(true);
         Play2DAudio(deathAudio);
         levelPlaying = false;
@@ -104,6 +105,7 @@ public class LevelManager : MonoBehaviour
         FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
         levelPlaying = true;
+
     }
 
     IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)

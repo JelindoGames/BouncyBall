@@ -13,11 +13,11 @@ public class LightDetection : MonoBehaviour
     public LevelManager levelManager;
 
     private string playerTag = "Player";
-
+    
     private Light light;
     private GameObject player;
 
-    private bool haveEntered = false;
+    public bool haveEntered = false;
 
     void Start()
     {
@@ -28,11 +28,10 @@ public class LightDetection : MonoBehaviour
 
     void Update()
     {
-        if (this.IsPlayerInLight() && !haveEntered)
+        if (this.IsPlayerInLight() && LevelManager.levelPlaying)
         {
-            haveEntered = true;
-            //AudioSource.PlayClipAtPoint(deathFalling, Camera.main.transform.position);
-            levelManager.PlayerHitsDeathPlane();
+            
+            StartCoroutine(levelManager.PlayerHitsDeathPlane());
             GameObject.FindGameObjectWithTag(playerTag).GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
