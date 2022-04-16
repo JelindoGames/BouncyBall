@@ -28,7 +28,6 @@ public class BlockBoss : MonoBehaviour
     private int health;
 
     public GameObject healthImg;
-    public StoryTalkInstance story;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +51,7 @@ public class BlockBoss : MonoBehaviour
     {
         while (health > 0)
         {
-            if (!story.inStory)
+            if (LevelManager.levelPlaying)
             {
                 switch (phase)
                 {
@@ -69,6 +68,10 @@ public class BlockBoss : MonoBehaviour
                         yield return StartCoroutine(Origin());
                         break;
                 }
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }
