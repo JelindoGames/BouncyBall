@@ -89,6 +89,11 @@ public class BlockBoss : MonoBehaviour
             phase = Phase.SHOT;
         else
             phase = Phase.BLOCKS;
+        foreach (GameObject g in blocks)
+        {
+            g.transform.position = new Vector3(g.transform.position.x, currentHeight, g.transform.position.z);
+        }
+        middleBlock.transform.position = new Vector3(middleBlock.transform.position.x, currentHeight, middleBlock.transform.position.z);
         yield return null;
     }
 
