@@ -14,6 +14,7 @@ public class StoryTalkInstance : MonoBehaviour
     int textNum = 0;
     //AudioSource aS;
     //AudioSource playerAudio;
+    public bool inStory;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class StoryTalkInstance : MonoBehaviour
         m = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StoryTalk>();
         m.SetImage(storyImage);
         m.StoryStart();
+        inStory = true;
         /*aS = GetComponent<AudioSource>();
         playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
         playerAudio.Pause();
@@ -50,6 +52,7 @@ public class StoryTalkInstance : MonoBehaviour
             m.StoryEnd();
             /*aS.Stop();
             playerAudio.Play();*/
+            inStory = false;
             Destroy(destroyObject);
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlockBoss : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class BlockBoss : MonoBehaviour
     public Phase phase;
     private int health;
 
+    public GameObject healthImg;
+    public StoryTalkInstance story;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +40,35 @@ public class BlockBoss : MonoBehaviour
         StartCoroutine(Sequence());
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CompleteReset();
+        }
+    }
+
     IEnumerator Sequence()
     {
         while (health > 0)
         {
-            switch (phase)
+            if (!story.inStory)
             {
-                case Phase.BLOCKS:
-                    yield return StartCoroutine(Blocks());
-                    break;
-                case Phase.SHOT:
-                    yield return StartCoroutine(Shot());
-                    break;
-                case Phase.STUN:
-                    yield return StartCoroutine(Stun());
-                    break;
-                default:
-                    yield return StartCoroutine(Origin());
-                    break;
+                switch (phase)
+                {
+                    case Phase.BLOCKS:
+                        yield return StartCoroutine(Blocks());
+                        break;
+                    case Phase.SHOT:
+                        yield return StartCoroutine(Shot());
+                        break;
+                    case Phase.STUN:
+                        yield return StartCoroutine(Stun());
+                        break;
+                    default:
+                        yield return StartCoroutine(Origin());
+                        break;
+                }
             }
         }
     }
@@ -77,10 +92,18 @@ public class BlockBoss : MonoBehaviour
 
     private IEnumerator Blocks()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(player.position, player.up * -1, out hit))
+        {
+            if (hit.transform.gameObject.tag == "Special Block")
+            {
+                CallHit();
+            }
+        }
 
         transform.position = new Vector3(transform.position.x, middleBlockHeight + 50, transform.position.z);
         List<GameObject> temp = new List<GameObject>();
-        foreach(GameObject g in blocks)
+        foreach (GameObject g in blocks)
         {
             temp.Add(g);
         }
@@ -100,7 +123,7 @@ public class BlockBoss : MonoBehaviour
         temp[0].transform.position = new Vector3(temp[0].transform.position.x, topHeight, temp[0].transform.position.z);
         middleBlock.transform.position = new Vector3(middleBlock.transform.position.x, middleBlockHeight, middleBlock.transform.position.z);
         yield return new WaitForSeconds(30f);
-        foreach(GameObject g in blocks)
+        foreach (GameObject g in blocks)
         {
             g.transform.position = new Vector3(g.transform.position.x, currentHeight, g.transform.position.z);
         }
@@ -133,13 +156,15 @@ public class BlockBoss : MonoBehaviour
 
     public void CallHit()
     {
+        FindObjectOfType<ColorChanger>().beingTransported = true;
         StartCoroutine("Hit");
     }
 
     public IEnumerator Hit()
     {
         health--;
-        if(health <= 0)
+        healthImg.GetComponent<Image>().fillAmount = (float)health / 5;
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -161,14 +186,23 @@ public class BlockBoss : MonoBehaviour
             player.position = Vector3.Lerp(player.position, playerTeleportPoint.position, 0.1f);
             yield return new WaitForEndOfFrame();
         }
+        FindObjectOfType<ColorChanger>().beingTransported = false;
         yield return null;
     }
 
     private void Reset()
     {
+        healthImg.GetComponent<Image>().fillAmount = (float)health / 5;
         StopAllCoroutines();
         phase = Phase.ORIGIN;
         StartCoroutine("Sequence");
+    }
+
+    public void CompleteReset()
+    {
+        currentHeight = blocks[0].transform.position.y;
+        health = 5;
+        Reset();
     }
 
     private void OnDestroy()

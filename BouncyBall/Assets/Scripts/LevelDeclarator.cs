@@ -12,6 +12,7 @@ public class LevelDeclarator : MonoBehaviour
     [SerializeField] Image myImg;
     [SerializeField] Text myText;
     int curLevel = 1;
+    [SerializeField] string bossName = "";
 
     private void Start()
     {
@@ -39,8 +40,10 @@ public class LevelDeclarator : MonoBehaviour
     IEnumerator DeclareProcess(bool newLevel)
     {
         curLevel += newLevel ? 1 : 0;
-        myText.text = "Level " + world + " - " + curLevel;
-
+        if (bossName == "")
+            myText.text = "Level " + world + " - " + curLevel;
+        else
+            myText.text = bossName;
         // Opaque
         myImg.color += Color.black;
         myText.color += Color.black;

@@ -78,7 +78,7 @@ public class MovementInputHelper : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable")
+        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Speed Booster" || collision.gameObject.tag == "Breakable" || collision.gameObject.tag == "Special Block")
         {
             if (regroundable)
             {

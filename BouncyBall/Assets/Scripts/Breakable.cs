@@ -8,7 +8,7 @@ public class Breakable : MonoBehaviour
     public float breakEnergy;
     [SerializeField] UnityEvent onBroken;
 
-    public AudioClip breakingSFX;
+    public List<AudioClip> breakingSFX;
     public ParticleSystem particalEffect;
     public bool dontDestroy = false;
 
@@ -26,7 +26,10 @@ public class Breakable : MonoBehaviour
             }
             if (breakingSFX != null)
             {
-                AudioSource.PlayClipAtPoint(breakingSFX, Camera.main.transform.position);
+                foreach (AudioClip a in breakingSFX)
+                {
+                    AudioSource.PlayClipAtPoint(a, Camera.main.transform.position);
+                }
             }
             onBroken.Invoke();
             if (!dontDestroy)

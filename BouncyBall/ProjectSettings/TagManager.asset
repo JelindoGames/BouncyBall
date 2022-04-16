@@ -10,6 +10,8 @@ TagManager:
   - DeathPlane
   - LevelEnd
   - Level Manager
+  - Fire
+  - Special Block
   layers:
   - Default
   - TransparentFX

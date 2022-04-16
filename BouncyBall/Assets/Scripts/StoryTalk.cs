@@ -28,6 +28,7 @@ public class StoryTalk : MonoBehaviour
     public void StoryStart()
     {
         gV.profile = talkVol;
+        LevelManager.levelPlaying = false;
     }
 
     public void StoryEnd()

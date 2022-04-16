@@ -9,16 +9,21 @@ public class ColorChanger : MonoBehaviour
     Movement mvmt;
     MovementInputHelper mih;
 
+    public bool beingTransported;
+
     private void Start()
     {
         mvmt = GetComponent<Movement>();
         mih = GetComponent<MovementInputHelper>();
-
     }
 
     private void Update()
     {
-        if (mih.inPerfectBounceWindow)
+        if (beingTransported)
+        {
+            playerMat.color = Color.cyan;
+        }
+        else if (mih.inPerfectBounceWindow)
         {
             playerMat.color = Color.red;
         }

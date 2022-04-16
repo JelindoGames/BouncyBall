@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &886475731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 886475732}
+  - component: {fileID: 886475733}
+  m_Layer: 0
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &886475732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886475731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2492461041268604912}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &886475733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886475731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63cbd116ae3c4dceaf82f2cc56de751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyText:
+  - I sense that you do not worship our gods!
+  - A god killed my family!
+  - They must pay!
+  - I see.
+  - I must sacrifice you to the gods to appease them.
+  - No non-believer can be left alive!!!
+  nameText:
+  - Ronald X
+  - Poly
+  - Poly
+  - Ronald X
+  - Ronald X
+  - Ronald X
+  storyImage: {fileID: 0}
+  destroyObject: {fileID: 886475731}
+  inStory: 1
 --- !u!1 &2492461041217217153
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2f899191e1b88496c85206993e84adaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,6 +205,7 @@ Transform:
   - {fileID: 8369765617354801635}
   - {fileID: 8369765615810267698}
   - {fileID: 2492461042913317997}
+  - {fileID: 886475732}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -208,7 +269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2f899191e1b88496c85206993e84adaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -257,7 +318,7 @@ GameObject:
   - component: {fileID: 2492461041390465918}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,7 +413,7 @@ GameObject:
   - component: {fileID: 2492461041417152821}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,6 +603,7 @@ GameObject:
   - component: {fileID: 2492461041796302053}
   - component: {fileID: 2492461041796302042}
   - component: {fileID: 2492461041796302043}
+  - component: {fileID: 1374401500}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -557,7 +619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492461041796302047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60, y: 20.2, z: 40}
+  m_LocalPosition: {x: 60, y: 7.78, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2492461041268604912}
@@ -590,7 +652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f5285063ba334278944b4847630b1e7, type: 2}
+  - {fileID: 2100000, guid: 758a4a6fff20441718ef485fcbb30938, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -662,14 +724,47 @@ MonoBehaviour:
   - {fileID: 2492461042815202037}
   middleBlock: {fileID: 2492461042180972387}
   shot: {fileID: 1006393777577281511, guid: 5032ee5fe008947a1a56221e77352e25, type: 3}
-  top: {fileID: 0}
-  body: {fileID: 0}
   middleBlockHeight: -30.42
   topHeight: -33.1
   middleHeight: -37.7
   bottomHeight: -40.4
   playerTeleportPoint: {fileID: 0}
   phase: 0
+  healthImg: {fileID: 0}
+  story: {fileID: 886475733}
+--- !u!114 &1374401500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492461041796302047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fed83908b1794da3a484169c2a0d647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakEnergy: 200
+  onBroken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2492461041796302043}
+        m_TargetAssemblyTypeName: BlockBoss, Assembly-CSharp
+        m_MethodName: CallHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  breakingSFX:
+  - {fileID: 8300000, guid: 169945efc899e49bba37adb6b206e3b7, type: 3}
+  - {fileID: 8300000, guid: fa454925060fa4c78b3a983bdd3436a0, type: 3}
+  particalEffect: {fileID: 4156604760606146441, guid: 047abbfdc877d4ae4b607afaf536e710, type: 3}
+  dontDestroy: 1
 --- !u!1 &2492461042180972387
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +779,7 @@ GameObject:
   - component: {fileID: 2492461042180972386}
   m_Layer: 0
   m_Name: Middle
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -920,7 +1015,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2f899191e1b88496c85206993e84adaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -969,7 +1064,7 @@ GameObject:
   - component: {fileID: 2492461042815202036}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,7 +1221,7 @@ GameObject:
   - component: {fileID: 2492461042918805965}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1267,7 +1362,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2f899191e1b88496c85206993e84adaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1316,7 +1411,7 @@ GameObject:
   - component: {fileID: 2492461043163260198}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1411,7 +1506,7 @@ GameObject:
   - component: {fileID: 2492461043257979497}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Special Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1582,6 +1677,18 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
       objectReference: {fileID: 0}
@@ -1648,6 +1755,18 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
       objectReference: {fileID: 0}
@@ -1712,6 +1831,18 @@ PrefabInstance:
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_RootOrder
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1856,6 +1987,18 @@ PrefabInstance:
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_RootOrder
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_LocalPosition.x
