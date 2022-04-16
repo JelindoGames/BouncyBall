@@ -53,4 +53,9 @@ public class StoryTalkInstance : MonoBehaviour
             Destroy(destroyObject);
         }
     }
+
+    public void EnableThis()
+    {
+        this.enabled = true;
+    }
 }

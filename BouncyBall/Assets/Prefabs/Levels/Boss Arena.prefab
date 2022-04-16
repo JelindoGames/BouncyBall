@@ -59,6 +59,63 @@ MonoBehaviour:
   - Ronald X
   storyImage: {fileID: 0}
   destroyObject: {fileID: 886475731}
+--- !u!1 &1686244108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686244109}
+  - component: {fileID: 1686244110}
+  m_Layer: 0
+  m_Name: StoryEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1686244109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686244108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2492461041268604912}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686244110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686244108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63cbd116ae3c4dceaf82f2cc56de751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyText:
+  - How... how could I have lost to a non-believer!
+  - Curse you!!!
+  - I am just one of many cult members who will face you!
+  - Our cult will make you a sacrifice eventually!
+  - Let them come...
+  nameText:
+  - Ronald X
+  - Ronald X
+  - Ronald X
+  - Ronald X
+  - Poly
+  storyImage: {fileID: 0}
+  destroyObject: {fileID: 2492461041796302047}
 --- !u!1 &2492461041217217153
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +262,7 @@ Transform:
   - {fileID: 8369765615810267698}
   - {fileID: 2492461042913317997}
   - {fileID: 886475732}
+  - {fileID: 1686244109}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2055,7 +2113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2063,7 +2121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2075,12 +2133,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5218443253526929318, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
+      propertyPath: storyEnd
+      value: 
+      objectReference: {fileID: 1686244108}
     - target: {fileID: 5218443253526929318, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
       propertyPath: middleBlock
       value: 
@@ -2114,5 +2176,10 @@ PrefabInstance:
 --- !u!4 &2492461041796302046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5218443253526929315, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
+  m_PrefabInstance: {fileID: 7709215200515545981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2492461041796302047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218443253526929314, guid: 0ff73560e7af1fc4aacfd1b13e7fc0e1, type: 3}
   m_PrefabInstance: {fileID: 7709215200515545981}
   m_PrefabAsset: {fileID: 0}
