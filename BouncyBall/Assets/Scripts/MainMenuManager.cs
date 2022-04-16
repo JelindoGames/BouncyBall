@@ -7,6 +7,12 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] int startScene;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void OnPlay()
     {
         SceneManager.LoadScene(startScene);

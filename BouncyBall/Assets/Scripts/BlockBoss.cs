@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BlockBoss : MonoBehaviour
 {
@@ -210,5 +211,10 @@ public class BlockBoss : MonoBehaviour
         currentHeight = blocks[0].transform.position.y;
         health = 5;
         Reset();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(0);
     }
 }
