@@ -5,20 +5,38 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     public GameObject player;
-    public Vector3 offsetPos;
-    public Quaternion offsetRot;
-    public Vector3 offsetSca;
+    public float offsetRadiusXZ;
+    public float offsetRadiusY;
+    public float initXZAngle; // XZ, as in the horizontal plane
+    public float initYAngle; // Y, as in the vertical plane
+    public float mouseSensXZ;
+    public float mouseSensY;
+    float xzAngle;
+    float yAngle;
 
     private void Start()
     {
+        xzAngle = initXZAngle;
+        yAngle = initYAngle;
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        transform.position = player.transform.position + offsetPos;
-        transform.rotation = offsetRot;
-        transform.localScale = offsetSca;
+        xzAngle += mouseSensXZ * Input.GetAxis("Mouse X") * Time.deltaTime;
+        yAngle += mouseSensY * Input.GetAxis("Mouse Y") * Time.deltaTime;
+        yAngle = Mathf.Clamp(yAngle, 0, 1.57f);
+        Vector3 center = player.transform.position;
+        Vector3 xzOffset =
+            new Vector3(
+                Mathf.Cos(xzAngle) * Mathf.Abs(Mathf.Cos(yAngle)),
+                0,
+                Mathf.Sin(xzAngle) * Mathf.Abs(Mathf.Cos(yAngle))) * offsetRadiusXZ;
+        Vector3 yOffset = new Vector3(0, Mathf.Sin(yAngle), 0) * offsetRadiusY;
+        transform.position = player.transform.position + xzOffset + yOffset;
+        transform.LookAt(player.transform);
+        //transform.rotation = offsetRot;
+        //transform.localScale = offsetSca;
     }
 }
