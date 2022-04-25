@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     GameObject player;
-    //CameraMove cam;
     StoryTalk st;
 
 

@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: c5b546ef4b2484176aae425d1f89eb04
   - enabled: 1
+    path: Assets/Scenes/OpeningCutscene.unity
+    guid: 19d77946d3a2f464fb6c63ec5856140d
+  - enabled: 1
     path: Assets/Scenes/POC.unity
     guid: 06e24638896484079b8466140f79aac0
   - enabled: 1
