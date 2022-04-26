@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 1200
   jumpForce: 500
-  jumpForceOnBounce: 250
+  jumpForceOnBounce: 225
   dropForce: 30
   origSpeedCap: 7
   fakeFrictionAmt: 17
@@ -1525,6 +1525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMat: {fileID: 2100000, guid: 1cc5f29bbba15474c82108d75ba368fe, type: 2}
+  beingTransported: 0
 --- !u!114 &9019305056814628909
 MonoBehaviour:
   m_ObjectHideFlags: 0
