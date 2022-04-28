@@ -54960,30 +54960,6 @@ PrefabInstance:
       propertyPath: storyPanel
       value: 
       objectReference: {fileID: 1249410046}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: mouseSensY
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: initXZAngle
-      value: -1.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: mouseSensXZ
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: offsetRadiusY
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137842267851617436, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
-      propertyPath: offsetRadiusXZ
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 3137842267851617437, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
       propertyPath: m_RootOrder
       value: 16
