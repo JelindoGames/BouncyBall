@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
     GameObject player;
     StoryTalk st;
 
-
     public static bool levelPlaying;
     bool levelWon;
     [SerializeField] GameObject winText;
@@ -17,18 +16,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
     [SerializeField] Text coinText;
-    [SerializeField] Vector3 cameraStartPos;
-    [SerializeField] Transform cam;
     [SerializeField] GameObject audioPlayer;
 
     [SerializeField] Transform[] levelStarts;
-    [SerializeField] List<FakeTransform> cameraPos;
 
     [SerializeField] AudioClip levelReset;
     [SerializeField] AudioClip coinCollected;
 
     public static Transform currentSpawn;
-    public static FakeTransform currentCamPos;
 
     public int currentLevelIdx;
     public float alteringSpeed = 0.2f;
@@ -46,7 +41,6 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        cam.position = cameraStartPos;
         currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
@@ -55,7 +49,6 @@ public class LevelManager : MonoBehaviour
 
         player.transform.position = levelStarts[currentLevelIdx].position;
         currentSpawn = levelStarts[currentLevelIdx];
-        currentCamPos = cameraPos[currentLevelIdx];
 
         st.EnableCanvas(false);
 
@@ -65,11 +58,9 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         currentSpawn = levelStarts[currentLevelIdx];
-        currentCamPos = cameraPos[currentLevelIdx];
         if (Input.GetKeyDown(KeyCode.R) && !levelWon)
         {
             Play2DAudio(levelReset);
-            cam.position = cameraStartPos;
             player.transform.position = levelStarts[currentLevelIdx].position;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -100,7 +91,6 @@ public class LevelManager : MonoBehaviour
         Play2DAudio(deathAudio);
         levelPlaying = false;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R));
-        cam.position = cameraStartPos;
         FindObjectOfType<LevelDeclarator>().DeclareLevel(false);
         deathText.SetActive(false);
         levelPlaying = true;
@@ -130,9 +120,6 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         yield return null;
-
-        //SceneManager.LoadScene(nextLevelID);
-
     }
 
     public void CoinCollected()
@@ -153,12 +140,4 @@ public class LevelManager : MonoBehaviour
         audio.clip = clip;
         audio.Play();
     }
-}
-
-[System.Serializable]
-public struct FakeTransform
-{
-    public Vector3 offsetPos;
-    public Quaternion offsetRot;
-    public Vector3 offsetSca;
 }
