@@ -35,6 +35,7 @@ public class RexBoss : MonoBehaviour
     public GameObject hand2;
 
     public GameObject spiritGun;
+    public GameObject goldenGun;
     public GameObject coin;
 
     public ButtonBehaviour buttXD;
@@ -43,7 +44,8 @@ public class RexBoss : MonoBehaviour
     Phase phase;
     Transform player;
 
-    float timer = 0;
+    public float timer = 0;
+    public int comboCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +93,7 @@ public class RexBoss : MonoBehaviour
 
     private IEnumerator Stun()
     {
-        if (health == 6 || health == 3)
+        if (health == 6 || health == 3 || health == 1)
         {
             stunPlatform.SetActive(true);
         }
@@ -103,7 +105,45 @@ public class RexBoss : MonoBehaviour
 
     private IEnumerator Combo()
     {
-        throw new NotImplementedException();
+        if (hand1.activeSelf == false)
+        {
+            int i = new Random().Next(0, 4);
+            hand1.transform.position = handTranList[i].position;
+            hand1.transform.rotation = handTranList[i].rotation;
+            hand1.SetActive(true);
+        }
+
+        if (shoe1.activeSelf == false)
+        {
+            int i = new Random().Next(0, 4);
+            shoe1.transform.position = shoeTranList[i].position;
+            shoe1.transform.rotation = shoeTranList[i].rotation;
+            shoe1.SetActive(true);
+        }
+
+        if (light1.activeSelf == false)
+        {
+            light1.transform.position = lightPosList[0];
+            light1.SetActive(true);
+        }
+
+        if (timer > comboCount * 10)
+        {
+            hand1.SetActive(false);
+            hand2.SetActive(false);
+            shoe1.SetActive(false);
+            shoe2.SetActive(false);
+            comboCount++;
+        }
+
+        if (comboCount >= 4)
+        {
+            phase = Phase.STUN;
+        }
+
+        timer += Time.deltaTime;
+
+        yield return null;
     }
 
     private IEnumerator Hands()
@@ -114,7 +154,7 @@ public class RexBoss : MonoBehaviour
                 {
                     if (hand1.activeSelf == false)
                     {
-                        int i = new Random().Next(0, 3);
+                        int i = new Random().Next(0, 4);
                         hand1.transform.position = handTranList[i].position;
                         hand1.transform.rotation = handTranList[i].rotation;
                         hand1.SetActive(true);
@@ -132,18 +172,12 @@ public class RexBoss : MonoBehaviour
                 {
                     if (hand1.activeSelf == false || hand2.activeSelf == false)
                     {
-                        int i = new Random().Next(0, 3);
+                        int i = new Random().Next(0, 4);
                         int k = i;
                         while (k == i)
                         {
-                            k = new Random().Next(0, 3);
+                            k = new Random().Next(0, 4);
                         }
-                        hand1.transform.position = handTranList[i].position;
-                        hand1.transform.rotation = handTranList[i].rotation;
-                        hand1.SetActive(true);
-                        hand2.transform.position = handTranList[k].position;
-                        hand2.transform.rotation = handTranList[k].rotation;
-                        hand2.SetActive(true);
                         if (GameObject.FindGameObjectsWithTag("Coin").Length <= 0)
                         {
                             foreach (Vector3 vec in coinList)
@@ -151,6 +185,13 @@ public class RexBoss : MonoBehaviour
                                 Instantiate(coin, vec, coin.transform.rotation);
                             }
                         }
+                        hand1.transform.position = handTranList[i].position;
+                        hand1.transform.rotation = handTranList[i].rotation;
+                        hand1.SetActive(true);
+                        yield return new WaitForSeconds(1);
+                        hand2.transform.position = handTranList[k].position;
+                        hand2.transform.rotation = handTranList[k].rotation;
+                        hand2.SetActive(true);
                     }
                     break;
                 }
@@ -183,7 +224,7 @@ public class RexBoss : MonoBehaviour
                 {
                     if (shoe1.activeSelf == false)
                     {
-                        int i = new Random().Next(0, 3);
+                        int i = new Random().Next(0, 4);
                         shoe1.transform.position = shoeTranList[i].position;
                         shoe1.transform.rotation = shoeTranList[i].rotation;
                         shoe1.SetActive(true);
@@ -194,11 +235,11 @@ public class RexBoss : MonoBehaviour
                 {
                     if (shoe1.activeSelf == false || shoe2.activeSelf == false)
                     {
-                        int i = new Random().Next(0, 3);
+                        int i = new Random().Next(0, 4);
                         int k = i;
                         while (k == i)
                         {
-                            k = new Random().Next(0, 3);
+                            k = new Random().Next(0, 4);
                         }
                         shoe1.transform.position = shoeTranList[i].position;
                         shoe1.transform.rotation = shoeTranList[i].rotation;
@@ -262,6 +303,8 @@ public class RexBoss : MonoBehaviour
 
     private IEnumerator Origin()
     {
+        timer = 0;
+        comboCount = 1;
         stunPlatform.SetActive(false);
         buttXD.isPressed = false;
         light1.SetActive(false);
@@ -341,6 +384,18 @@ public class RexBoss : MonoBehaviour
         }
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+        timer = 0;
+        comboCount = 1;
+        stunPlatform.SetActive(false);
+        buttXD.isPressed = false;
+        light1.SetActive(false);
+        light2.SetActive(false);
+        shoe1.SetActive(false);
+        shoe2.SetActive(false);
+        hand1.SetActive(false);
+        hand2.SetActive(false);
+
         yield return StartCoroutine("MoveToOrigin");
         //player.GetComponent<Movement>().DropParticles(false);
 
@@ -365,9 +420,11 @@ public class RexBoss : MonoBehaviour
     {
         healthImg.GetComponent<Image>().fillAmount = (float)health / 7;
 
-        for(int i = GameObject.FindGameObjectsWithTag("Coin").Length - 1; i >= 0; i--)
+        GameObject[] list = GameObject.FindGameObjectsWithTag("Coin");
+
+        foreach (GameObject g in list)
         {
-            Destroy(GameObject.FindGameObjectsWithTag("Coin")[GameObject.FindGameObjectsWithTag("Coin").Length - 1]);
+            Destroy(g);
         }
 
         StopAllCoroutines();
@@ -377,6 +434,9 @@ public class RexBoss : MonoBehaviour
 
     public void StartShot()
     {
-        Instantiate(spiritGun, new Vector3(28, 5, 0), new Quaternion());
+        if (health > 1)
+            Instantiate(spiritGun, new Vector3(28, 0, 0), new Quaternion());
+        else
+            Instantiate(goldenGun, new Vector3(28, 0, 0), new Quaternion());
     }
 }

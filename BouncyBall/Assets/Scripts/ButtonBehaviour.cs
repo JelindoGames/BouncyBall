@@ -9,6 +9,8 @@ public class ButtonBehaviour : MonoBehaviour
 
     public Transform button;
 
+    Vector3 origPos;
+
     //[SerializeField] GameObject audioPlayer;
     //[SerializeField] AudioClip pressedSound;
 
@@ -20,6 +22,7 @@ public class ButtonBehaviour : MonoBehaviour
         {
             button = transform.GetChild(0);
         }
+        origPos = button.position;
     }
 
     void OnTriggerStay(Collider other)
@@ -41,11 +44,22 @@ public class ButtonBehaviour : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!isPressed)
+        {
+            button.position = origPos;
+        }
+        else
+        {
+            button.position = origPos - new Vector3(0f, .5f, 0f);
+        }
+    }
+
     void ButtonPress()
     {
         if (!isPressed)
         {
-            button.position -= new Vector3(0f, .5f, 0f);
             isPressed = true;
         }
         
