@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     public static bool levelPlaying;
     bool levelWon;
+    [SerializeField] int world; // World idx? (0 = World 1, 1 = World 1 boss...)
     [SerializeField] GameObject winText;
     [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
@@ -41,7 +42,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
+        PlayerPrefs.SetInt("world", world);
+        //currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -64,14 +66,14 @@ public class LevelManager : MonoBehaviour
         }
         currentTime += Time.deltaTime;
         PlayerPrefs.SetFloat("time", currentTime);
-        PlayerPrefs.GetInt("currentSpawn", currentLevelIdx);
+        //PlayerPrefs.GetInt("currentSpawn", currentLevelIdx);
         PlayerPrefs.Save();
         timeText.text = "Time: " + currentTime;
     }
 
     public void PlayerHitsLevelEnd()
     {
-        StartCoroutine(VictorySequence(false, null, null)); // TODO this code is bad
+        StartCoroutine(VictorySequence(false, null, null));
     }
 
     // For story stuff
@@ -86,13 +88,11 @@ public class LevelManager : MonoBehaviour
         player.transform.position = levelStarts[currentLevelIdx].position;
         player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        //player.GetComponent<Movement>().DropParticles(false);
     }
 
 
     public IEnumerator PlayerHitsDeathPlane()
     {
-        Debug.Log("Here 1");
         deathText.SetActive(true);
         Play2DAudio(deathAudio);
         levelPlaying = false;

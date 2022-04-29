@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/POC Boss.unity
     guid: abc56151fdbe94d1ba6aceea5e204f1a
+  - enabled: 1
+    path: Assets/Scenes/World 3.unity
+    guid: 7399703a3bbfd47e49a16ce7c550c2d7
+  - enabled: 1
+    path: Assets/Scenes/Final Boss.unity
+    guid: 05edc757270b4490f8366c58fc5ff9d7
   m_configObjects: {}

@@ -1431,6 +1431,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 217137828}
     - target: {fileID: 8379420728423377354, guid: 2311e644c779548bca709dfcca28b5a6, type: 3}
+      propertyPath: world
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379420728423377354, guid: 2311e644c779548bca709dfcca28b5a6, type: 3}
       propertyPath: winText
       value: 
       objectReference: {fileID: 51611808}
