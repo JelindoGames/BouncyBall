@@ -10733,6 +10733,70 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 718476773}
+    - target: {fileID: 3024341882633127950, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341882633127950, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341882633127950, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341882633127950, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341882633127950, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544557, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: directionSpecifier.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544561, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544561, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544561, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544561, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883101544561, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883881996745, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883881996745, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883881996745, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883881996745, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024341883881996745, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 9171861618711416102, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
       propertyPath: m_Name
       value: Final Boss Level
