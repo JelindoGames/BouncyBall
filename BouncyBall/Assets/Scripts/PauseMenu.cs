@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -28,5 +29,16 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+    }
+
+    public void BackMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnReset()
+    {
+        FindObjectOfType<LevelManager>().StartCoroutine("PlayerHitsDeathPlane");
+        OnResume();
     }
 }

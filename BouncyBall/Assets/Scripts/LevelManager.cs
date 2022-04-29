@@ -60,11 +60,7 @@ public class LevelManager : MonoBehaviour
         currentSpawn = levelStarts[currentLevelIdx];
         if (Input.GetKeyDown(KeyCode.R) && !levelWon)
         {
-            Play2DAudio(levelReset);
-            player.transform.position = levelStarts[currentLevelIdx].position;
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            //player.GetComponent<Movement>().DropParticles(false);
+            PlayerReset();
         }
         currentTime += Time.deltaTime;
         PlayerPrefs.SetFloat("time", currentTime);
@@ -83,6 +79,16 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(VictorySequence(true, collided, character));
     }
+
+    public void PlayerReset()
+    {
+        Play2DAudio(levelReset);
+        player.transform.position = levelStarts[currentLevelIdx].position;
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        //player.GetComponent<Movement>().DropParticles(false);
+    }
+
 
     public IEnumerator PlayerHitsDeathPlane()
     {

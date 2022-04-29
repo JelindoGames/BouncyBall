@@ -39,4 +39,14 @@ public class CameraMove : MonoBehaviour
         //transform.rotation = offsetRot;
         //transform.localScale = offsetSca;
     }
+
+    public void SetMouseSensXZ(float num)
+    {
+        mouseSensXZ = num;
+    }
+
+    public void SetMouseSensY(float num)
+    {
+        mouseSensY = num;
+    }
 }
