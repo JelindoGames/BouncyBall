@@ -19,6 +19,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGame()
     {
+        PlayerPrefs.SetFloat("time", 0);
         SceneManager.LoadScene(startScene);
     }
 

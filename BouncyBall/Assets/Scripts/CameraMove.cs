@@ -8,8 +8,8 @@ public class CameraMove : MonoBehaviour
     public float offsetRadiusY;
     public float initXZAngle; // XZ, as in the horizontal plane
     public float initYAngle; // Y, as in the vertical plane
-    float mouseSensXZ;
-    float mouseSensY;
+    public float mouseSensXZ;
+    public float mouseSensY;
     GameObject player;
     float xzAngle;
     float yAngle;

@@ -43,7 +43,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.SetInt("world", world);
-        //currentLevelIdx = PlayerPrefs.GetInt("currentSpawn", 0);
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -65,10 +64,7 @@ public class LevelManager : MonoBehaviour
             PlayerReset();
         }
         currentTime += Time.deltaTime;
-        PlayerPrefs.SetFloat("time", currentTime);
-        //PlayerPrefs.GetInt("currentSpawn", currentLevelIdx);
-        PlayerPrefs.Save();
-        timeText.text = "Time: " + currentTime;
+        timeText.text = "Time: " + currentTime.ToString("0.00");
     }
 
     public void PlayerHitsLevelEnd()
@@ -109,7 +105,11 @@ public class LevelManager : MonoBehaviour
         winText.SetActive(true);
         levelPlaying = false;
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
+
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        PlayerPrefs.SetFloat("time", currentTime);
+        PlayerPrefs.Save();
+
         if (!story)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

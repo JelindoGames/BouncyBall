@@ -31,21 +31,21 @@ public class StoryTalkInstance : MonoBehaviour
             Debug.Log("Pressed");
             textNum++;
         }
-        //try
-        //{
-        m.StoryStart();
-        m.SetText(storyText[textNum], nameText[textNum]);
-        m.EnableCanvas(true);
-        //}
-        //catch (Exception e)
-        //{
-            //Debug.Log("Object Destroyed");
-            //m.EnableCanvas(false);
-            //m.StoryEnd();
+        try
+        {
+            m.StoryStart();
+            m.SetText(storyText[textNum], nameText[textNum]);
+            m.EnableCanvas(true);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Object Destroyed");
+            m.EnableCanvas(false);
+            m.StoryEnd();
             /*aS.Stop();
             playerAudio.Play();*/
-            //Destroy(destroyObject);
-       //}
+            Destroy(destroyObject);
+        }
     }
 
     public void EnableThis()
