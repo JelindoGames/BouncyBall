@@ -15107,6 +15107,14 @@ PrefabInstance:
       propertyPath: m_DefaultBlend.m_Style
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3137842267851617431, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
+      propertyPath: m_Volume
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137842267851617431, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e6a5375414ba4a2aa54402785e43f2d, type: 3}
     - target: {fileID: 3137842267851617432, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
       propertyPath: gV
       value: 
