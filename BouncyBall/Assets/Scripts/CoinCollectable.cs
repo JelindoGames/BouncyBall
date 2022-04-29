@@ -5,18 +5,22 @@ using UnityEngine;
 public class CoinCollectable : MonoBehaviour
 {
     LevelManager lm;
+    Animator anim;
+    bool collected = false;
 
     private void Start()
     {
         lm = FindObjectOfType<LevelManager>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !collected)
         {
             lm.CoinCollected();
-            Destroy(gameObject);
+            anim.SetTrigger("Collected"); // Animation will set scale to nothing
+            Destroy(gameObject, 2);
         }
     }
 }
