@@ -251,7 +251,7 @@ public class RexBoss : MonoBehaviour
                     break;
                 }
         }
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(9f);
 
         phase = Phase.STUN;
 
