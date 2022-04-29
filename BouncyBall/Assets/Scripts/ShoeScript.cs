@@ -8,16 +8,19 @@ public class ShoeScript : MonoBehaviour
     bool movingUp = false;
     Rigidbody rb;
     private LevelManager levelMan;
-
+    private GameObject player;
     public float movementSpeedUp;
     public float movementSpeedDown;
     public float level;
+
+    public float stompForce = 0;
 
     void Start()
     {
         startingHeight = transform.position.y;
         rb = GetComponent<Rigidbody>();
         levelMan = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()
@@ -37,6 +40,10 @@ public class ShoeScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (player.GetComponent<MovementInputHelper>().grounded)
+        {
+            player.GetComponent<Rigidbody>().AddForce(Vector3.up * stompForce, ForceMode.Impulse);
+        }
         movingUp = true;
     }
 }
