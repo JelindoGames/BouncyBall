@@ -7,7 +7,15 @@ public class TogglableGate : MonoBehaviour
     [SerializeField] Vector3 distToMove;
     [SerializeField] float time;
 
-    public void OnActivate()
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            OnActivate();
+        }
+    }
+
+    void OnActivate()
     {
         StartCoroutine("Move");
     }
