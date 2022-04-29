@@ -148,10 +148,8 @@ public class EnemyAIIntelligence : MonoBehaviour
 
         if (Vector3.Angle(directionToPlayer, transform.forward) <= fieldOfView)
         {
-            Debug.Log("penis 1");
             if (Physics.Raycast(enemyEyes.position, directionToPlayer, out hit, chaseDistance))
             {
-                Debug.Log(hit.collider.gameObject + "penis 2");
                 if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Crush"))
                 {
                     print("Player in sight");
