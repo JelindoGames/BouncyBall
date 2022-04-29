@@ -348,8 +348,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNum: 1
   audioPlayer: {fileID: 7880387877381270855, guid: eb283f878c7c14f458d29295141c0688, type: 3}
-  sound: {fileID: 8300000, guid: d4b81069105084a48ad535f966c080b3, type: 3}
-  particles: {fileID: 4156604760606146439, guid: 047abbfdc877d4ae4b607afaf536e710, type: 3}
+  newLevelSound: {fileID: 8300000, guid: d4b81069105084a48ad535f966c080b3, type: 3}
+  newLevelParticles: {fileID: 4156604760606146439, guid: 047abbfdc877d4ae4b607afaf536e710, type: 3}
+  endOfWorld: 0
 --- !u!114 &7139375812540887231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,3 +379,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onNotBroken:
+    m_PersistentCalls:
+      m_Calls: []
+  breakingSFX: []
+  particalEffect: {fileID: 0}
+  dontDestroy: 0

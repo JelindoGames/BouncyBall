@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
         }
         else if (other.CompareTag("LevelEnd"))
         {
-            FindObjectOfType<LevelManager>().PlayerHitsLevelEnd(other.gameObject, gameObject);
+            FindObjectOfType<LevelManager>().PlayerHitsWorldEnd(other.gameObject, gameObject);
         }
     }
 

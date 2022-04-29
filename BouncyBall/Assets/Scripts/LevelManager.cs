@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
     [SerializeField] Text coinText;
+    [SerializeField] Text levelText;
     [SerializeField] GameObject audioPlayer;
 
     [SerializeField] Transform[] levelStarts;
@@ -54,6 +55,7 @@ public class LevelManager : MonoBehaviour
         st.EnableCanvas(false);
 
         UpdateCoinText();
+        UpdateLevelText();
     }
 
     private void Update()
@@ -67,13 +69,20 @@ public class LevelManager : MonoBehaviour
         timeText.text = "Time: " + currentTime.ToString("0.00");
     }
 
-    public void PlayerHitsLevelEnd()
+    public void PlayerHitsSubworldEnd(int levelNum)
+    {
+        currentLevelIdx = levelNum;
+        FindObjectOfType<LevelDeclarator>().DeclareLevel(true);
+        UpdateLevelText();
+    }
+
+    public void PlayerHitsWorldEnd()
     {
         StartCoroutine(VictorySequence(false, null, null));
     }
 
     // For story stuff
-    public void PlayerHitsLevelEnd(GameObject collided, GameObject character)
+    public void PlayerHitsWorldEnd(GameObject collided, GameObject character)
     {
         StartCoroutine(VictorySequence(true, collided, character));
     }
@@ -99,11 +108,12 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    // For when the player has beaten the world.
     IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)
     {
         levelWon = true;
-        winText.SetActive(true);
         levelPlaying = false;
+        winText.SetActive(true);
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -138,6 +148,11 @@ public class LevelManager : MonoBehaviour
     void UpdateCoinText()
     {
         coinText.text = "Score: " + coinScore;
+    }
+
+    void UpdateLevelText()
+    {
+        levelText.text = "World " + (world + 1) + "-" + (currentLevelIdx + 1);
     }
 
     void Play2DAudio(AudioClip clip)

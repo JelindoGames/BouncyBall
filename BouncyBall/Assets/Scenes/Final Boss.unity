@@ -1685,6 +1685,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 732351404}
     - target: {fileID: 8379420728423377354, guid: 2311e644c779548bca709dfcca28b5a6, type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 1587347583}
+    - target: {fileID: 8379420728423377354, guid: 2311e644c779548bca709dfcca28b5a6, type: 3}
       propertyPath: cameraPos.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -8302,6 +8306,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+--- !u!114 &1587347583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3483551540895438311, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+  m_PrefabInstance: {fileID: 1587347582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1621258262
 Mesh:
   m_ObjectHideFlags: 0

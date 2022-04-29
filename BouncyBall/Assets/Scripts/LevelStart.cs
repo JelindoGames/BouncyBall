@@ -8,8 +8,8 @@ public class LevelStart : MonoBehaviour
     LevelManager level;
     public int levelNum;
     [SerializeField] GameObject audioPlayer;
-    [SerializeField] AudioClip sound;
-    [SerializeField] GameObject particles;
+    [SerializeField] AudioClip newLevelSound;
+    [SerializeField] GameObject newLevelParticles;
     [SerializeField] bool endOfWorld;
     GameObject player;
 
@@ -22,19 +22,18 @@ public class LevelStart : MonoBehaviour
 
     public void StartLevel()
     {
-        print(endOfWorld);
         if (endOfWorld)
         {
-            level.PlayerHitsLevelEnd();
+            level.PlayerHitsWorldEnd();
             return;
         }
-        level.currentLevelIdx = levelNum;
-        LevelManager.levelPlaying = true;
+        level.PlayerHitsSubworldEnd(levelNum);
+        //level.currentLevelIdx = levelNum;
+        //LevelManager.levelPlaying = true;
         AudioSource audio = Instantiate(audioPlayer, player.transform.position, Quaternion.identity).GetComponent<AudioSource>();
-        audio.clip = sound;
+        audio.clip = newLevelSound;
         audio.Play();
-        Instantiate(particles, player.transform.position, Quaternion.identity);
-        FindObjectOfType<LevelDeclarator>().DeclareLevel(true);
+        Instantiate(newLevelParticles, player.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

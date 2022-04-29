@@ -14,7 +14,9 @@ public class MainMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         // Either know which world we left off in, or default to zero
-        continueText.text = "CONTINUE (WORLD " + (PlayerPrefs.GetInt("world", 0) + 1) + ")";
+        int world = PlayerPrefs.GetInt("world", 0) + 1;
+        float timer = PlayerPrefs.GetFloat("time", 0);
+        continueText.text = "CONTINUE (WORLD " + world + ", TIME " + timer.ToString("0.00") + ")";
     }
 
     public void OnNewGame()
