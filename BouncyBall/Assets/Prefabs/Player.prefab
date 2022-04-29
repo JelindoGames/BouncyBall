@@ -1224,13 +1224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfdec18d453f400abdd70ab23459bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  world: 0
   winText: {fileID: 0}
-  deathAudio: {fileID: 8300000, guid: 2112470e1b48740a08ddafa924877f16, type: 3}
   deathText: {fileID: 0}
   timeText: {fileID: 0}
   coinText: {fileID: 0}
-  cameraStartPos: {x: 0, y: 0, z: 0}
-  cam: {fileID: 0}
+  levelText: {fileID: 0}
+  levelReset: {fileID: 8300000, guid: a1750070f2c564854a334570b0ed7658, type: 3}
+  coinCollected: {fileID: 8300000, guid: bdca5dbbeac2241d683f6f0ade8a2acd, type: 3}
+  deathAudio: {fileID: 8300000, guid: 2112470e1b48740a08ddafa924877f16, type: 3}
   audioPlayer: {fileID: 7880387877381270855, guid: eb283f878c7c14f458d29295141c0688, type: 3}
   levelStarts:
   - {fileID: 0}
@@ -1239,27 +1241,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  cameraPos:
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  - offsetPos: {x: 0, y: 4, z: -6.81}
-    offsetRot: {x: 0.17364818, y: 0, z: 0, w: 0.9848077}
-    offsetSca: {x: 1, y: 1, z: 1}
-  levelReset: {fileID: 8300000, guid: a1750070f2c564854a334570b0ed7658, type: 3}
-  coinCollected: {fileID: 8300000, guid: bdca5dbbeac2241d683f6f0ade8a2acd, type: 3}
   currentLevelIdx: 0
   alteringSpeed: 0.2
 --- !u!1 &8379420728687483506
@@ -1410,7 +1391,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8379420729887715831
 MonoBehaviour:

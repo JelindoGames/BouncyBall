@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGame()
     {
+        PlayerPrefs.SetFloat("score", 0);
         PlayerPrefs.SetFloat("time", 0);
         SceneManager.LoadScene(startScene);
     }

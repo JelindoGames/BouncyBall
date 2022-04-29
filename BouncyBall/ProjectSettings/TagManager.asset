@@ -13,6 +13,7 @@ TagManager:
   - Fire
   - Special Block
   - Coin
+  - WanderPoint
   layers:
   - Default
   - TransparentFX

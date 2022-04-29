@@ -13,34 +13,34 @@ public class EnemyAIIntelligence : MonoBehaviour
 
     public float chaseDistance = 10f;
     public GameObject player;
-    public FSMStates currentState;
-    public float enemySpeed = 5f;
+    public FSMStates currentState = FSMStates.Patrol;
+    public float enemySpeedChase = 10f;
+    public float enemySpeedPatrol = 5f;
+    public float minDistanceToWanderPoint = 10f;
+    public Color patrolLightColor;
+    public Color chaseLightColor;
+    public Light spotlight; // Spotlight of view
 
-    GameObject[] wanderPoints;
+    public GameObject[] wanderPoints; // To be selected through editor (unique to each enemy)
     Vector3 nextDestination;
     float distanceToPlayer;
-    float elapsedTime = 0f;
+    AudioSource myAlarm; // To be sounded when chasing player
 
     int currentDestinationIndex = 0;
 
     public NavMeshAgent agent;
-
     public Transform enemyEyes;
     public float fieldOfView = 45f;
-    bool isDead;
 
-    // Start is called before the first frame update
     void Start()
     {
-        wanderPoints = GameObject.FindGameObjectsWithTag("WanderPoint");
+        myAlarm = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player");
         Initialize();
 
         agent = GetComponent<NavMeshAgent>();
-        isDead = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
@@ -55,7 +55,6 @@ public class EnemyAIIntelligence : MonoBehaviour
                 break;
         }
 
-        elapsedTime += Time.deltaTime;
         Debug.Log(nextDestination);
     }
 
@@ -67,13 +66,11 @@ public class EnemyAIIntelligence : MonoBehaviour
 
     void UpdatePatrolState()
     {
-        print("Patrolling!");
-
-        agent.speed = 3.5f;
-
+        spotlight.color = patrolLightColor;
+        agent.speed = enemySpeedPatrol;
         agent.stoppingDistance = 0;
 
-        if (Vector3.Distance(transform.position, nextDestination) < 1)
+        if (Vector3.Distance(transform.position, nextDestination) < minDistanceToWanderPoint)
         {
             FindNextPoint();
         }
@@ -81,31 +78,28 @@ public class EnemyAIIntelligence : MonoBehaviour
         if (IsPlayerInClearFOV())
         {
             currentState = FSMStates.Chase;
+            myAlarm.Play();
         }
 
         FaceTarget(nextDestination);
-
         agent.SetDestination(nextDestination);
     }
 
     void UpdateChaseState()
     {
-        print("Chasing!");
-
+        spotlight.color = chaseLightColor;
         agent.stoppingDistance = 0;
-
-        agent.speed = 5;
-
+        agent.speed = enemySpeedChase;
         nextDestination = player.transform.position;
 
         if (distanceToPlayer > chaseDistance)
         {
             FindNextPoint();
             currentState = FSMStates.Patrol;
+            myAlarm.Stop();
         }
 
         FaceTarget(nextDestination);
-
         agent.SetDestination(nextDestination);
     }
 
@@ -123,45 +117,14 @@ public class EnemyAIIntelligence : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
-
-    
-    private void OnDrawGizmos()
-    {
-        // chase
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance);
-
-        //Vector3 frontRayPoint = enemyEyes.position + (enemyEyes.forward * chaseDistance);
-
-        //Vector3 leftRayPoint = Quaternion.Euler(0, fieldOfView * 0.5f, 0) * frontRayPoint;
-        //Vector3 rightRayPoint = Quaternion.Euler(0, fieldOfView * 0.5f, 0) * -frontRayPoint;
-
-        //Debug.DrawLine(enemyEyes.position, frontRayPoint, Color.cyan);
-        //Debug.DrawLine(enemyEyes.position, leftRayPoint, Color.yellow);
-        //Debug.DrawLine(enemyEyes.position, rightRayPoint, Color.red);
-    }
     
     bool IsPlayerInClearFOV()
     {
         RaycastHit hit;
         Vector3 directionToPlayer = player.transform.position - enemyEyes.position;
-
-        if (Vector3.Angle(directionToPlayer, transform.forward) <= fieldOfView)
-        {
-            if (Physics.Raycast(enemyEyes.position, directionToPlayer, out hit, chaseDistance))
-            {
-                if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Crush"))
-                {
-                    print("Player in sight");
-                    return true;
-                }
-
-                return false;
-            }
-
-            return false;
-        }
-
-        return false;
+        
+        return Vector3.Angle(directionToPlayer, transform.forward) <= fieldOfView
+            && Physics.Raycast(enemyEyes.position, directionToPlayer, out hit, chaseDistance)
+            && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Crush"));
     }
 }

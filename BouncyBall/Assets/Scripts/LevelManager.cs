@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
         // Update these for beginning of the world
         PlayerPrefs.SetInt("world", world);
         currentTime = PlayerPrefs.GetFloat("time", 0);
+        coinScore = PlayerPrefs.GetInt("score", 0);
 
         player = GameObject.FindGameObjectWithTag("Player");
         st = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<StoryTalk>();
@@ -121,6 +122,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
 
         PlayerPrefs.SetFloat("time", currentTime);
+        PlayerPrefs.SetInt("score", coinScore);
         PlayerPrefs.Save();
 
         if (!story)
