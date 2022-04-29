@@ -772,14 +772,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 312504450, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312504450, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312504450, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1326109627, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1900659859}
+    - target: {fileID: 1333044917, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333044917, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333044917, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950981111, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950981111, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950981111, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1966457876, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1900659859}
+    - target: {fileID: 2143419400, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143419400, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143419400, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 770173931459867736, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_Name
       value: 'Canvas '
