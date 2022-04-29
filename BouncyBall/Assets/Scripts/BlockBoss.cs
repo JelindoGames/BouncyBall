@@ -214,6 +214,6 @@ public class BlockBoss : MonoBehaviour
 
     private void OnDestroy()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
 }

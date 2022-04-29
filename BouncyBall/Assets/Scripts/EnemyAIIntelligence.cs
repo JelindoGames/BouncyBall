@@ -98,6 +98,7 @@ public class EnemyAIIntelligence : MonoBehaviour
             FindNextPoint();
             currentState = FSMStates.Patrol;
             myAlarm.Stop();
+            return;
         }
 
         FaceTarget(nextDestination);
