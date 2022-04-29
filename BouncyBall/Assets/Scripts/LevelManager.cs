@@ -11,19 +11,21 @@ public class LevelManager : MonoBehaviour
 
     public static bool levelPlaying;
     bool levelWon;
+
     [SerializeField] int world; // World idx? (0 = World 1, 1 = World 1 boss...)
+
     [SerializeField] GameObject winText;
-    [SerializeField] AudioClip deathAudio;
     [SerializeField] GameObject deathText;
     [SerializeField] Text timeText;
     [SerializeField] Text coinText;
     [SerializeField] Text levelText;
-    [SerializeField] GameObject audioPlayer;
-
-    [SerializeField] Transform[] levelStarts;
 
     [SerializeField] AudioClip levelReset;
     [SerializeField] AudioClip coinCollected;
+    [SerializeField] AudioClip deathAudio;
+    [SerializeField] GameObject audioPlayer;
+
+    [SerializeField] Transform[] levelStarts;
 
     public static Transform currentSpawn;
 
@@ -43,6 +45,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        // Update these for beginning of the world
         PlayerPrefs.SetInt("world", world);
         currentTime = PlayerPrefs.GetFloat("time", 0);
 
@@ -60,7 +63,6 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        currentSpawn = levelStarts[currentLevelIdx];
         if (Input.GetKeyDown(KeyCode.R) && !levelWon)
         {
             PlayerReset();
@@ -72,6 +74,7 @@ public class LevelManager : MonoBehaviour
     public void PlayerHitsSubworldEnd(int levelNum)
     {
         currentLevelIdx = levelNum;
+        currentSpawn = levelStarts[currentLevelIdx];
         FindObjectOfType<LevelDeclarator>().DeclareLevel(true);
         UpdateLevelText();
     }
@@ -108,7 +111,6 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    // For when the player has beaten the world.
     IEnumerator VictorySequence(bool story, GameObject collided, GameObject character)
     {
         levelWon = true;
@@ -117,6 +119,7 @@ public class LevelManager : MonoBehaviour
         FindObjectOfType<LevelDeclarator>().AdvanceLevel();
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
         PlayerPrefs.SetFloat("time", currentTime);
         PlayerPrefs.Save();
 
