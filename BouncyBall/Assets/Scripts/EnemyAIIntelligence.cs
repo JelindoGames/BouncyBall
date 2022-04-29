@@ -79,6 +79,7 @@ public class EnemyAIIntelligence : MonoBehaviour
         {
             currentState = FSMStates.Chase;
             myAlarm.Play();
+            return;
         }
 
         FaceTarget(nextDestination);
