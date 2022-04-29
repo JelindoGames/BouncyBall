@@ -95,6 +95,75 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &312727083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 312727084}
+  - component: {fileID: 312727085}
+  m_Layer: 0
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &312727084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312727083}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9171861618711416105}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312727085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312727083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63cbd116ae3c4dceaf82f2cc56de751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyText:
+  - I've finally caught up to you!
+  - You probably know who I am, you Ravenous God!
+  - My name is Rex. And no, I don't know who you are are.
+  - I'm the Roly Poly whose parents you brutally murdered!
+  - Do you have any idea how little that narrows it down?
+  - You are horrible! I will kill you and get revenge for Roly Poly kind!!!
+  - I hope this new Spirit Gun works.
+  - To use the Spirit Gun you need enough power.
+  - Hit any buttons and collect any coins you see to build up your Spirit Power Polly!
+  - The fate of the world is in your "hands" now!
+  - What's a hand???
+  nameText:
+  - Polly
+  - Polly
+  - Rex
+  - Polly
+  - Rex
+  - Polly
+  - Polly
+  - Random Bug Slayer 69
+  - Random Bug Slayer 69
+  - Random Bug Slayer 69
+  - Polly
+  storyImage: {fileID: 0}
+  destroyObject: {fileID: 312727083}
 --- !u!1 &365204386
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +355,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1139411047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139411048}
+  - component: {fileID: 1139411049}
+  m_Layer: 0
+  m_Name: StoryEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1139411048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139411047}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9171861618711416105}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139411049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139411047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63cbd116ae3c4dceaf82f2cc56de751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyText:
+  - You actually killed him...
+  - This is disgusting!
+  - My revenge is not over my friend!
+  - This dead God will just be the beginning.
+  - I will not rest until every God has been slain!
+  - From now on call me Polly Slayer of Gods!!!
+  - Mwahahahahahaha!!!!!
+  nameText:
+  - Random Bug Slayer 69
+  - Random Bug Slayer 69
+  - Polly
+  - Polly
+  - Polly
+  - Polly
+  - Polly
+  storyImage: {fileID: 0}
+  destroyObject: {fileID: 0}
 --- !u!1 &1346801011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1318,8 @@ Transform:
   - {fileID: 9171861618631795452}
   - {fileID: 365204387}
   - {fileID: 9171861619869008132}
+  - {fileID: 312727084}
+  - {fileID: 1139411048}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1751,6 +1883,10 @@ PrefabInstance:
       propertyPath: light2
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3121323061241456170, guid: 8049c20550cb642a8b7ec1f93044edef, type: 3}
+      propertyPath: storyEnd
+      value: 
+      objectReference: {fileID: 1139411047}
     - target: {fileID: 3121323061241456170, guid: 8049c20550cb642a8b7ec1f93044edef, type: 3}
       propertyPath: goldenGun
       value: 
