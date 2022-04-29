@@ -56,6 +56,7 @@ public class EnemyAIIntelligence : MonoBehaviour
         }
 
         elapsedTime += Time.deltaTime;
+        Debug.Log(nextDestination);
     }
 
     void Initialize()
@@ -76,7 +77,8 @@ public class EnemyAIIntelligence : MonoBehaviour
         {
             FindNextPoint();
         }
-        else if (IsPlayerInClearFOV())
+        
+        if (IsPlayerInClearFOV())
         {
             currentState = FSMStates.Chase;
         }
@@ -90,7 +92,7 @@ public class EnemyAIIntelligence : MonoBehaviour
     {
         print("Chasing!");
 
-        agent.stoppingDistance = chaseDistance;
+        agent.stoppingDistance = 0;
 
         agent.speed = 5;
 
@@ -122,32 +124,35 @@ public class EnemyAIIntelligence : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
 
+    
     private void OnDrawGizmos()
     {
         // chase
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
 
-        Vector3 frontRayPoint = enemyEyes.position + (enemyEyes.forward * chaseDistance);
+        //Vector3 frontRayPoint = enemyEyes.position + (enemyEyes.forward * chaseDistance);
 
-        Vector3 leftRayPoint = Quaternion.Euler(0, fieldOfView * 0.5f, 0) * frontRayPoint;
-        Vector3 rightRayPoint = Quaternion.Euler(0, -fieldOfView * 0.5f, 0) * frontRayPoint;
+        //Vector3 leftRayPoint = Quaternion.Euler(0, fieldOfView * 0.5f, 0) * frontRayPoint;
+        //Vector3 rightRayPoint = Quaternion.Euler(0, fieldOfView * 0.5f, 0) * -frontRayPoint;
 
-        Debug.DrawLine(enemyEyes.position, frontRayPoint, Color.cyan);
-        Debug.DrawLine(enemyEyes.position, leftRayPoint, Color.yellow);
-        Debug.DrawLine(enemyEyes.position, rightRayPoint, Color.yellow);
+        //Debug.DrawLine(enemyEyes.position, frontRayPoint, Color.cyan);
+        //Debug.DrawLine(enemyEyes.position, leftRayPoint, Color.yellow);
+        //Debug.DrawLine(enemyEyes.position, rightRayPoint, Color.red);
     }
-
+    
     bool IsPlayerInClearFOV()
     {
         RaycastHit hit;
         Vector3 directionToPlayer = player.transform.position - enemyEyes.position;
 
-        if (Vector3.Angle(directionToPlayer, enemyEyes.forward) <= fieldOfView)
+        if (Vector3.Angle(directionToPlayer, transform.forward) <= fieldOfView)
         {
+            Debug.Log("penis 1");
             if (Physics.Raycast(enemyEyes.position, directionToPlayer, out hit, chaseDistance))
             {
-                if (hit.collider.CompareTag("Player"))
+                Debug.Log(hit.collider.gameObject + "penis 2");
+                if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Crush"))
                 {
                     print("Player in sight");
                     return true;
