@@ -12,7 +12,7 @@ public class ButtonBehaviour : MonoBehaviour
     //[SerializeField] GameObject audioPlayer;
     //[SerializeField] AudioClip pressedSound;
 
-    private bool isPressed = false;
+    public bool isPressed = false;
 
     private void Awake()
     {
@@ -29,10 +29,8 @@ public class ButtonBehaviour : MonoBehaviour
         {
             
             Movement m = other.gameObject.GetComponent<Movement>();
-            Debug.Log("State" + m.currentState());
             if (m.currentState() == Movement.State.DropPhysical)
             {
-                Debug.Log("Here 2");
                 //AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
                 //audio.clip = pressedSound;
                 //audio.Play();

@@ -12,6 +12,7 @@ TagManager:
   - Level Manager
   - Fire
   - Special Block
+  - Coin
   layers:
   - Default
   - TransparentFX

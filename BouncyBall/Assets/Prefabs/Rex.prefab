@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3121323061241456168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3121323061241456169}
+  - component: {fileID: 3121323061241456171}
+  - component: {fileID: 3121323061241456170}
+  m_Layer: 0
+  m_Name: Rex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3121323061241456169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121323061241456168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28, y: 134.69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3121323061241456171
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121323061241456168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 10, z: 1000}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3121323061241456170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121323061241456168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a74b1e0ca1b44bfbc4d2b96041e11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTeleportPoint: {fileID: 0}
+  storyEnd: {fileID: 0}
+  healthBackgroundImage: {fileID: 0}
+  healthImg: {fileID: 0}
+  lightPosList:
+  - {x: 56, y: -1.759995, z: 0}
+  - {x: 56, y: -1.759995, z: 28}
+  - {x: 56, y: -1.7599945, z: -28}
+  shoeTranList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  handTranList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  coinList:
+  - {x: 56, y: 1, z: -28}
+  - {x: 56, y: 1, z: 28}
+  - {x: 0, y: 1, z: -28}
+  - {x: 0, y: 1, z: 28}
+  stunPlatform: {fileID: 0}
+  light1: {fileID: 0}
+  light2: {fileID: 0}
+  shoe1: {fileID: 0}
+  shoe2: {fileID: 0}
+  hand1: {fileID: 0}
+  hand2: {fileID: 0}
+  spiritGun: {fileID: 3310956622143310765, guid: b531d74d05c9441e2ba095b92013e39d, type: 3}
+  coin: {fileID: 2340247995541810899, guid: b10702138a5b6408cbb66df247cfaf7b, type: 3}

@@ -23,6 +23,14 @@ public class ShoeScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    private void OnEnable()
+    {
+        startingHeight = transform.position.y;
+        rb = GetComponent<Rigidbody>();
+        levelMan = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void FixedUpdate()
     {
         if (levelMan.currentLevelIdx == level) {

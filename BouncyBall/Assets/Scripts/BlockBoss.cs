@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class BlockBoss : MonoBehaviour
 {
-    public enum Phase
+    enum Phase
     {
         ORIGIN, BLOCKS, SHOT, STUN
     }
@@ -27,7 +27,7 @@ public class BlockBoss : MonoBehaviour
     public Transform playerTeleportPoint;
     private Transform player;
 
-    public Phase phase;
+    Phase phase;
     public int health = 5;
 
     public GameObject healthImg;
@@ -209,7 +209,6 @@ public class BlockBoss : MonoBehaviour
     public void CompleteReset()
     {
         currentHeight = blocks[0].transform.position.y;
-        health = 5;
         Reset();
     }
 
