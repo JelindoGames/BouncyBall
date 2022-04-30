@@ -8,19 +8,24 @@ using Random = System.Random;
 
 public class RexBoss : MonoBehaviour
 {
+    // The FSM states for the boss
     enum Phase
     {
         ORIGIN, LIGHTS, FEET, HANDS, COMBO, STUN
     }
 
+    // SFX Volume
     public float clipVolume = .6f;
 
+    // Place player transports to
     public Transform playerTeleportPoint;
 
+    // UI Vars
     public GameObject storyEnd;
     public GameObject healthBackgroundImage;
     public GameObject healthImg;
 
+    // Lists for attacks
     public Vector3[] lightPosList = new Vector3[3];
 
     public Transform[] shoeTranList = new Transform[4];
@@ -29,6 +34,7 @@ public class RexBoss : MonoBehaviour
 
     public Vector3[] coinList = new Vector3[4];
 
+    // The attacks and platform in scene
     public GameObject stunPlatform;
     public GameObject light1;
     public GameObject light2;
@@ -37,24 +43,30 @@ public class RexBoss : MonoBehaviour
     public GameObject hand1;
     public GameObject hand2;
 
+    // Player GameObjects
     public GameObject spiritGun;
     public GameObject goldenGun;
     public GameObject coin;
 
+    // SFX
     public AudioClip hitClip;
 
+    // Button in boss level
     public ButtonBehaviour buttXD;
 
+    // Boss private vars
     int health = 7;
     Phase phase;
     Transform player;
 
+    // Used for timer specific things
     public float timer = 0;
     public int comboCount = 1;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Setup the fight
         player = GameObject.FindGameObjectWithTag("Player").transform;
         phase = Phase.ORIGIN;
         StartCoroutine(Sequence());
@@ -66,7 +78,7 @@ public class RexBoss : MonoBehaviour
         {
             if (LevelManager.levelPlaying)
             {
-                switch (phase)
+                switch (phase) // FSM State Logic
                 {
                     case Phase.LIGHTS:
                         yield return StartCoroutine(Lights());
@@ -96,10 +108,12 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Stun State
     private IEnumerator Stun()
     {
         if (health == 6 || health == 3 || health == 1)
         {
+            // Stun Platform appears
             stunPlatform.SetActive(true);
         }
         yield return new WaitForSeconds(7);
@@ -108,6 +122,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Combo State. Used for the final phase.
     private IEnumerator Combo()
     {
         if (hand1.activeSelf == false)
@@ -151,6 +166,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Hands State. Used for phases 5 and 2.
     private IEnumerator Hands()
     {
         switch (health)
@@ -221,6 +237,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Feet State. Used for phases 6 and 3.
     private IEnumerator Feet()
     {
         switch (health)
@@ -263,6 +280,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Lights State. Used for phases 7 and 4.
     private IEnumerator Lights()
     {
         switch (health)
@@ -306,6 +324,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Origin State. Used to initiate other states and reset things.
     private IEnumerator Origin()
     {
         timer = 0;
@@ -354,6 +373,7 @@ public class RexBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Restart code.
         if (Input.GetKeyDown(KeyCode.R))
         {
             Reset();
@@ -362,6 +382,7 @@ public class RexBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Code that does damage
         if (other.CompareTag("Fire"))
         {
             CallHit();
@@ -371,12 +392,14 @@ public class RexBoss : MonoBehaviour
         }
     }
 
+    // Used to Start Hit Coroutine
     public void CallHit()
     {
         FindObjectOfType<ColorChanger>().beingTransported = true;
         StartCoroutine("Hit");
     }
 
+    // When the Boss is hit.
     public IEnumerator Hit()
     {
         health--;
@@ -404,12 +427,12 @@ public class RexBoss : MonoBehaviour
         FindObjectOfType<LevelManager>().Play2DAudio(hitClip, clipVolume);
 
         yield return StartCoroutine("MoveToOrigin");
-        //player.GetComponent<Movement>().DropParticles(false);
 
         Reset();
         yield return null;
     }
 
+    // Moves player back to start
     private IEnumerator MoveToOrigin()
     {
         while (Vector3.Distance(playerTeleportPoint.position, player.position) >= 0.5f)
@@ -423,6 +446,7 @@ public class RexBoss : MonoBehaviour
         yield return null;
     }
 
+    // Resets the state
     private void Reset()
     {
         healthImg.GetComponent<Image>().fillAmount = (float)health / 7;
@@ -439,6 +463,7 @@ public class RexBoss : MonoBehaviour
         StartCoroutine("Sequence");
     }
 
+    // Does the player attack
     public void StartShot()
     {
         if (health > 1)
@@ -447,6 +472,7 @@ public class RexBoss : MonoBehaviour
             Instantiate(goldenGun, new Vector3(28, 0, 0), new Quaternion());
     }
 
+    // RIP
     private void OnDestroy()
     {
         SceneManager.LoadScene(0);

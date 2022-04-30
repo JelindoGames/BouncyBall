@@ -7,34 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class BlockBoss : MonoBehaviour
 {
+    // The FSM states for the boss
     enum Phase
     {
         ORIGIN, BLOCKS, SHOT, STUN
     }
 
+    // Blocks in Boss Level
     public List<GameObject> blocks;
     public GameObject middleBlock;
     public GameObject shot;
     public GameObject storyEnd;
     public GameObject healthBackgroundImage;
 
+    // Heights for blocks
     public float middleBlockHeight;
     public float topHeight;
     public float middleHeight;
     public float bottomHeight;
     private float currentHeight;
 
+    // Player specific
     public Transform playerTeleportPoint;
     private Transform player;
 
+    // Boss specific
     Phase phase;
     public int health = 5;
 
+    // Health Image
     public GameObject healthImg;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Setup the fight
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHeight = blocks[0].transform.position.y;
         phase = Phase.ORIGIN;
@@ -43,6 +50,7 @@ public class BlockBoss : MonoBehaviour
 
     void Update()
     {
+        // Restart code.
         if (Input.GetKeyDown(KeyCode.R))
         {
             CompleteReset();
@@ -55,7 +63,7 @@ public class BlockBoss : MonoBehaviour
         {
             if (LevelManager.levelPlaying)
             {
-                switch (phase)
+                switch (phase) // FSM State Logic
                 {
                     case Phase.BLOCKS:
                         yield return StartCoroutine(Blocks());
@@ -79,7 +87,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
-
+    // The Origin State. Used to initiate other states and reset things.
     private IEnumerator Origin()
     {
         foreach (GameObject g in blocks)
@@ -95,6 +103,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Blocks State. Makes the blocks rise.
     private IEnumerator Blocks()
     {
         RaycastHit hit;
@@ -102,6 +111,7 @@ public class BlockBoss : MonoBehaviour
         {
             if (hit.collider.CompareTag("Special Block"))
             {
+                FindObjectOfType<ColorChanger>().beingTransported = true;
                 yield return StartCoroutine("MoveToOrigin");
             }
         }
@@ -138,6 +148,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Stun State. Waits to be attacked.
     private IEnumerator Stun()
     {
         yield return new WaitForSeconds(10f);
@@ -145,6 +156,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // The Shot State. Fires fire.
     private IEnumerator Shot()
     {
         int shots = 15;
@@ -159,12 +171,14 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // Starts Hit Coroutine.
     public void CallHit()
     {
         FindObjectOfType<ColorChanger>().beingTransported = true;
         StartCoroutine("Hit");
     }
 
+    // Does damage to boss.
     public IEnumerator Hit()
     {
         health--;
@@ -184,6 +198,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // Moves player to start
     private IEnumerator MoveToOrigin()
     {
         while (Vector3.Distance(playerTeleportPoint.position, player.position) >= 0.5f)
@@ -197,6 +212,7 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
+    // Resets the phase
     private void Reset()
     {
         healthImg.GetComponent<Image>().fillAmount = (float)health / 5;
@@ -205,12 +221,14 @@ public class BlockBoss : MonoBehaviour
         StartCoroutine("Sequence");
     }
 
+    // Resets the blocks and phase
     public void CompleteReset()
     {
         currentHeight = blocks[0].transform.position.y;
         Reset();
     }
 
+    // RIP
     private void OnDestroy()
     {
         SceneManager.LoadScene(4);
