@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6246599778572685620}
   - component: {fileID: 6246599778572685621}
   - component: {fileID: 6246599778572685622}
+  - component: {fileID: 5662700864967767455}
   m_Layer: 0
   m_Name: Speed Booster Fixed Direction
   m_TagString: Speed Booster
@@ -112,3 +113,18 @@ MonoBehaviour:
   addedForce: 500
   directionSpecifier: {x: 0, y: 0, z: 1}
   needsBounce: 0
+--- !u!114 &5662700864967767455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246599778572685623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d003756e1b846f9aaa014c5264d319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0}
+  color2: {r: 1, g: 1, b: 1, a: 0}
+  speed: 10
