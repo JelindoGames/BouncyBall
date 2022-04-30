@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TogglableGate : MonoBehaviour
 {
     [SerializeField] Vector3 distToMove;
     [SerializeField] float time;
+    [SerializeField] UnityEvent onTouched;
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            OnActivate();
+            onTouched.Invoke();
         }
     }
 
-    void OnActivate()
+    public void MoveUp()
     {
         StartCoroutine("Move");
     }

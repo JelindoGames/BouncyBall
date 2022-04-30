@@ -42,8 +42,6 @@ public class StoryTalkInstance : MonoBehaviour
             Debug.Log("Object Destroyed");
             m.EnableCanvas(false);
             m.StoryEnd();
-            /*aS.Stop();
-            playerAudio.Play();*/
             Destroy(destroyObject);
         }
     }
