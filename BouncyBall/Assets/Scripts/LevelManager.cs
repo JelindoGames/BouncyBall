@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// Handles all of the major level-related states in the game.
 public class LevelManager : MonoBehaviour
 {
     GameObject player;

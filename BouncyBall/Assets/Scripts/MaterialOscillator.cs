@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Moves a material from one color to another.
 public class MaterialOscillator : MonoBehaviour
 {
     Renderer rend;

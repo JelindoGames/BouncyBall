@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Allows free control of the camera in both horizontal (XZ
+// for the sake of this script) and vertical (Y for the sake
+// of this script) axes.
 public class CameraMove : MonoBehaviour
 {
     public float offsetRadiusXZ;

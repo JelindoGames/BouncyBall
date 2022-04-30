@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Explodes this object in a random direction.
 public class RandomExplosion : MonoBehaviour
 {
     Rigidbody rb;

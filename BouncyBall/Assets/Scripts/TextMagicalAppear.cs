@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Allows text to appear when you are close to it.
+// If the player is between (distanceMin) and (distanceMax) away,
+// the text will be somewhat faded.
 public class TextMagicalAppear : MonoBehaviour
 {
     Transform player;

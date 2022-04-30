@@ -10,10 +10,9 @@ public class LevelStart : MonoBehaviour
     [SerializeField] GameObject audioPlayer;
     [SerializeField] AudioClip newLevelSound;
     [SerializeField] GameObject newLevelParticles;
-    [SerializeField] bool endOfWorld;
+    [SerializeField] bool endOfWorld; // When StartLevel() is called, will that signify the world is done?
     GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
         level = FindObjectOfType<LevelManager>();
@@ -28,8 +27,6 @@ public class LevelStart : MonoBehaviour
             return;
         }
         level.PlayerHitsSubworldEnd(levelNum);
-        //level.currentLevelIdx = levelNum;
-        //LevelManager.levelPlaying = true;
         AudioSource audio = Instantiate(audioPlayer, player.transform.position, Quaternion.identity).GetComponent<AudioSource>();
         audio.clip = newLevelSound;
         audio.Play();

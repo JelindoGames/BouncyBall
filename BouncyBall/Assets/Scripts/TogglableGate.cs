@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Script for a gate that, when touched, can do something
+// (including moving up to allow the player in)
+// NOTE: This script allows the gate to move up infinitely if you touch
+// it enough. We thought this was fun, so we kept it!
 public class TogglableGate : MonoBehaviour
 {
     [SerializeField] Vector3 distToMove;
@@ -13,7 +17,7 @@ public class TogglableGate : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            onTouched.Invoke();
+            onTouched.Invoke(); // Unity Event which can cause anything you want to happen
         }
     }
 
@@ -24,6 +28,7 @@ public class TogglableGate : MonoBehaviour
 
     IEnumerator Move()
     {
+        // Move upwards (or I guess any direction really) by some amount.
         Vector3 origPos = transform.position;
         float timer = 0f;
         while (timer < time)

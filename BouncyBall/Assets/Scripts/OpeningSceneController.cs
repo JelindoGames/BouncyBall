@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// Handles the incredible and amazing sequence that happenes
+// in the opening scene.
+// Controls each of the interactions/changes one by one.
 public class OpeningSceneController : MonoBehaviour
 {
     [SerializeField] Sprite polly1;
@@ -32,6 +35,8 @@ public class OpeningSceneController : MonoBehaviour
 
     IEnumerator OpeningScene()
     {
+        // A string of chronologically ordered things that happen in the
+        // opening sequence.
         fadeToBlack.color = new Color(0, 0, 0, 0);
         pollyRenderer.sprite = polly1;
         yield return new WaitForSeconds(1.5f);

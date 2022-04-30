@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Moves an object smoothly from one position to another
 public class Oscillator : MonoBehaviour
 {
     [SerializeField] Vector3 distDiff;
