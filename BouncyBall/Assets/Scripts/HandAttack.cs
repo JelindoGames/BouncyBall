@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandAttack : MonoBehaviour
 {
     public float moveSpeed;
-    Rigidbody rb;
+    [SerializeField] Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
