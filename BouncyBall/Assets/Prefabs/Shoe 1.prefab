@@ -10864,6 +10864,8 @@ MonoBehaviour:
   movementSpeedUp: 5
   movementSpeedDown: 7
   level: 5
+  stompClip: {fileID: 8300000, guid: 41c26c0dddc2d4a1489b3365a0f824f3, type: 3}
+  stompForce: 0
 --- !u!65 &969671261495685162
 BoxCollider:
   m_ObjectHideFlags: 0

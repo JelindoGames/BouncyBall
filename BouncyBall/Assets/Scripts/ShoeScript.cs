@@ -13,6 +13,8 @@ public class ShoeScript : MonoBehaviour
     public float movementSpeedDown;
     public float level;
 
+    public AudioClip stompClip;
+
     public float stompForce = 0;
 
     void Start()
@@ -53,5 +55,6 @@ public class ShoeScript : MonoBehaviour
             player.GetComponent<Rigidbody>().AddForce(Vector3.up * stompForce, ForceMode.Impulse);
         }
         movingUp = true;
+        FindObjectOfType<LevelManager>().Play2DAudio(stompClip);
     }
 }
