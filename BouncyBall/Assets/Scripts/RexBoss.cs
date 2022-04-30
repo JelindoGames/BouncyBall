@@ -12,6 +12,8 @@ public class RexBoss : MonoBehaviour
         ORIGIN, LIGHTS, FEET, HANDS, COMBO, STUN
     }
 
+    public float clipVolume = .6f;
+
     public Transform playerTeleportPoint;
 
     public GameObject storyEnd;
@@ -398,7 +400,7 @@ public class RexBoss : MonoBehaviour
         hand1.SetActive(false);
         hand2.SetActive(false);
 
-        FindObjectOfType<LevelManager>().Play2DAudio(hitClip);
+        FindObjectOfType<LevelManager>().Play2DAudio(hitClip, clipVolume);
 
         yield return StartCoroutine("MoveToOrigin");
         //player.GetComponent<Movement>().DropParticles(false);

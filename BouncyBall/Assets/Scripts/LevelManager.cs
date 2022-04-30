@@ -166,4 +166,12 @@ public class LevelManager : MonoBehaviour
         audio.clip = clip;
         audio.Play();
     }
+
+    public void Play2DAudio(AudioClip clip, float volume)
+    {
+        AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
+        audio.clip = clip;
+        audio.volume = volume;
+        audio.Play();
+    }
 }
