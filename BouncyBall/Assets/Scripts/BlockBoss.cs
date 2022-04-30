@@ -95,7 +95,6 @@ public class BlockBoss : MonoBehaviour
         yield return null;
     }
 
-
     private IEnumerator Blocks()
     {
         RaycastHit hit;
@@ -103,7 +102,8 @@ public class BlockBoss : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Special Block")
             {
-                CallHit();
+                print("Move to origin");
+                MoveToOrigin();
             }
         }
 
