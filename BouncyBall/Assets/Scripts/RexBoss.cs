@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -444,5 +445,10 @@ public class RexBoss : MonoBehaviour
             Instantiate(spiritGun, new Vector3(28, 0, 0), new Quaternion());
         else
             Instantiate(goldenGun, new Vector3(28, 0, 0), new Quaternion());
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(0);
     }
 }

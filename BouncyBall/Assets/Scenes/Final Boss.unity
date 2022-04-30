@@ -12613,6 +12613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1139411049, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: destroyObject
+      value: 
+      objectReference: {fileID: 9171861618287042866}
     - target: {fileID: 2560595503027169730, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -12823,3 +12827,8 @@ PrefabInstance:
       objectReference: {fileID: 1467604491}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+--- !u!1 &9171861618287042866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9171861619869008133, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+  m_PrefabInstance: {fileID: 9171861618287042865}
+  m_PrefabAsset: {fileID: 0}
