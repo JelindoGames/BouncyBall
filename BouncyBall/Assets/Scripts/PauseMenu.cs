@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    //Resets the level and then resumes
     public void OnReset()
     {
         FindObjectOfType<LevelManager>().StartCoroutine("PlayerHitsDeathPlane");

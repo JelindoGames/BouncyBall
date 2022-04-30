@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StoryTalkInstance : MonoBehaviour
 {
+    // Vars
     public List<string> storyText;
     public List<string> nameText;
     public Sprite storyImage;
@@ -28,17 +29,20 @@ public class StoryTalkInstance : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Advances Text
             Debug.Log("Pressed");
             textNum++;
         }
         try
         {
+            // Sets the fields of StoryTalk
             m.StoryStart();
             m.SetText(storyText[textNum], nameText[textNum]);
             m.EnableCanvas(true);
         }
         catch (Exception e)
         {
+            // If the story is over do this
             Debug.Log("Object Destroyed");
             m.EnableCanvas(false);
             m.StoryEnd();
@@ -46,6 +50,7 @@ public class StoryTalkInstance : MonoBehaviour
         }
     }
 
+    // To enable from Event
     public void EnableThis()
     {
         this.enabled = true;

@@ -11,9 +11,6 @@ public class ButtonBehaviour : MonoBehaviour
 
     Vector3 origPos;
 
-    //[SerializeField] GameObject audioPlayer;
-    //[SerializeField] AudioClip pressedSound;
-
     public bool isPressed = false;
 
     private void Awake()
@@ -27,16 +24,12 @@ public class ButtonBehaviour : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        
         if (other.CompareTag("Player") && !isPressed)
         {
             
             Movement m = other.gameObject.GetComponent<Movement>();
             if (m.currentState() == Movement.State.DropPhysical)
             {
-                //AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
-                //audio.clip = pressedSound;
-                //audio.Play();
                 onPress.Invoke();
                 ButtonPress();
                 
@@ -44,12 +37,14 @@ public class ButtonBehaviour : MonoBehaviour
         }
     }
 
+    
     private void Update()
     {
         if (!isPressed)
         {
             button.position = origPos;
         }
+        //Moves the Button down to when pressed
         else
         {
             button.position = origPos - new Vector3(0f, .5f, 0f);
