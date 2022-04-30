@@ -21,6 +21,6 @@ public class HandAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(transform.right * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddForce(Vector3.right * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
     }
 }
