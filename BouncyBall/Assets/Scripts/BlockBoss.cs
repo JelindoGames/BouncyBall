@@ -100,10 +100,9 @@ public class BlockBoss : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(player.position, player.up * -1, out hit))
         {
-            if (hit.transform.gameObject.tag == "Special Block")
+            if (hit.collider.CompareTag("Special Block"))
             {
-                print("Move to origin");
-                MoveToOrigin();
+                yield return StartCoroutine("MoveToOrigin");
             }
         }
 
