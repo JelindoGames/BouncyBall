@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Breakable : MonoBehaviour
 {
+    // Variables
     public float breakEnergy;
     [SerializeField] UnityEvent onBroken;
     [SerializeField] UnityEvent onNotBroken;
@@ -17,9 +18,10 @@ public class Breakable : MonoBehaviour
     {
         if (other.gameObject.tag == "Crush")
         {
+            // Debug 
             Debug.Log("Player Energy: " + KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()));
         }
-        if (other.gameObject.tag == "Crush" && KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()) >= breakEnergy)
+        if (other.gameObject.tag == "Crush" && KineticEnergy(other.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>()) >= breakEnergy) // If we have enough energy to break
         {
             if (particalEffect != null)
             {
@@ -36,7 +38,7 @@ public class Breakable : MonoBehaviour
             if (!dontDestroy)
                 Destroy(gameObject);
         }
-        else
+        else // If we didn't break
         {
             if (particalEffect != null)
             {
@@ -53,6 +55,7 @@ public class Breakable : MonoBehaviour
         }
     }
 
+    // The way we calculate the breaking force
     public static float KineticEnergy(Rigidbody rb)
     {
         // mass in kg, velocity in meters per second, result is joules
