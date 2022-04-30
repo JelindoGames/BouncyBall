@@ -2391,6 +2391,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1490875066, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: color1.b
+      value: 0.015982322
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490875066, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: color1.g
+      value: 0.6792453
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490875066, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
+      propertyPath: color1.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1291139757839903953, guid: fc7b279f015be8946b2d2a845204d9be, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -54897,6 +54909,34 @@ PrefabInstance:
     - target: {fileID: 770173931459867748, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 770173931976279413, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: bossName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_FontData.m_MaxSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}

@@ -28610,6 +28610,10 @@ PrefabInstance:
       propertyPath: world
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 770173931976279413, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: bossName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
 --- !u!114 &770173931931835013 stripped
