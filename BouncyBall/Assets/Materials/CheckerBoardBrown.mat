@@ -158,14 +158,14 @@ Material:
     - Ambient_Light: {r: 1, g: 1, b: 1, a: 0}
     - Tiling: {r: 0, g: 0, b: 0, a: 0}
     - Wave_Color_Multiplier: {r: 1, g: 1, b: 1, a: 0}
-    - _Ambient_Light_A: {r: 0, g: 0.7203593, b: 1, a: 0}
+    - _Ambient_Light_A: {r: 1, g: 1, b: 1, a: 0}
     - _Ambient_Light_B: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CheckerColor: {r: 1, g: 0.5415094, b: 0.5415094, a: 0}
     - _CheckerIntersectionColor: {r: 0.754717, g: 0.1666073, b: 0.1666073, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_A: {r: 0.4433962, g: 0.14428522, b: 0.039738327, a: 0}
-    - _Color_B: {r: 0.3018868, g: 0.090693235, b: 0.015663939, a: 0}
+    - _Color_A: {r: 0, g: 0, b: 0, a: 0}
+    - _Color_B: {r: 0.4433962, g: 0.27816838, b: 0.27816838, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling_A: {r: 1, g: 1, b: 0, a: 0}
