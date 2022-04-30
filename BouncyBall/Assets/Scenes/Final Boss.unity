@@ -12773,6 +12773,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2038193449}
     - target: {fileID: 9171861619869008135, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: hitClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c1ceb8c73a1234b3f9faa06849328572, type: 3}
+    - target: {fileID: 9171861619869008135, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
       propertyPath: healthImg
       value: 
       objectReference: {fileID: 342489176}
