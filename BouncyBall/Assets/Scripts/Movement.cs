@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Lets the player move around!
 public class Movement : MonoBehaviour
 {
     public enum State
@@ -54,7 +55,8 @@ public class Movement : MonoBehaviour
         specialMovementInteractions = GetComponent<SpecialMovementInteractions>();
         bounceSoundPlayer = GetComponent<BounceSoundPlayer>();
         Physics.autoSimulation = false;
-        breakCol.radius = (4.642857143E-4f * Breakable.KineticEnergy(rb)) + 2f; // What?
+        // Don't ask us what that number means. We know what it means, trust me, just don't ask.
+        breakCol.radius = (4.642857143E-4f * Breakable.KineticEnergy(rb)) + 2f; 
     }
 
     void Update()
@@ -63,6 +65,7 @@ public class Movement : MonoBehaviour
         speedText.text = "Speed: " + (int)rb.velocity.magnitude;
     }
 
+    // Basically, this works like an FSM
     void FixedUpdate()
     {
         if (!LevelManager.levelPlaying) return;
@@ -135,6 +138,8 @@ public class Movement : MonoBehaviour
         state = State.Rolling;
     }
 
+    // Handles the various things that can happen while you are in "bounce mode"
+    // (in the air, bouncing around, doing your thing.)
     void HandleBounceState()
     {
         if (movementInputHelper.groundedForPeriod && !Input.GetKey(KeyCode.Space))
@@ -151,7 +156,6 @@ public class Movement : MonoBehaviour
             bounceSoundPlayer.Play(BounceSoundPlayer.BounceType.PerfectBounce);
             GameObject particles = Instantiate(perfectBounceParticles);
             particles.transform.position = transform.position;
-            // TODO CLEAN THIS UP
             if (Mathf.Abs(rb.velocity.y) < 1f)
             {
                 rb.velocity = new Vector3(rb.velocity.x, -movementInputHelper.lastRBVelocityOffGround.y * 0.8f, rb.velocity.z);
@@ -233,6 +237,10 @@ public class Movement : MonoBehaviour
 
     void HandleXZMovement()
     {
+        // Deal with horizontal movement on the part of the player.
+        // Handles varying amounts of "friction" (velocity limitation)
+        // whether on the ground or on the air.
+        // Travel is relative to the position of the camera.
         Vector3 camFwdXZ = cam.transform.forward;
         camFwdXZ.y = 0;
         camFwdXZ = camFwdXZ.normalized;

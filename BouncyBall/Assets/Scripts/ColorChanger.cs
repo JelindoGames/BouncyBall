@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Changes the player's color depending
+// on their movement state.
 [RequireComponent(typeof(Movement))]
 public class ColorChanger : MonoBehaviour
 {
     [SerializeField] Material playerMat;
     Movement mvmt;
+    // Helps to distinguish the movement state that is happening.
     MovementInputHelper mih;
 
     public bool beingTransported;

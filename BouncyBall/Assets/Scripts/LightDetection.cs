@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// Detects whether or not the player is in this light's cone of "vision"
 [RequireComponent(typeof(Light))]
 public class LightDetection : MonoBehaviour
 {
@@ -48,7 +49,6 @@ public class LightDetection : MonoBehaviour
 
     private bool IsPlayerInLight()
     {
-        //Debug.Log("In cone: " + this.IsPlayerInCone() + ", In light: " + this.IsPlayerInLineOfSight());
         Debug.DrawLine(this.transform.position, this.player.transform.position);
         return this.IsPlayerInCone() || this.IsPlayerInLineOfSight();
     }

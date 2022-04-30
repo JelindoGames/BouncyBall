@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Allows a coin to be collected. When collected,
+// tells the level manager about it.
 public class CoinCollectable : MonoBehaviour
 {
     LevelManager lm;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles all of the special interactions that can take place
+// during movement, like hitting a speed booster.
 public class SpecialMovementInteractions : MonoBehaviour
 {
     public Vector3 jumpVector { get; private set; }

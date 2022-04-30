@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Handles programmatic aspects of the main menu, and allows all of
+// the main menu buttons to have functionality.
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] int startScene;
