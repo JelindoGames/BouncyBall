@@ -45089,7 +45089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyText:
-  - HEY POLY!!!
+  - HEY POLLY!!!
   - DID YOU KNOW THAT IF YOU WERE GOING FAST ENOUGH YOU COULD HAVE SKIPPED THIS ANNOYING
     TEXT!!!
   - RANDOM INTERUPTION OVER :)
@@ -54913,30 +54913,6 @@ PrefabInstance:
     - target: {fileID: 770173931976279413, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: bossName
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_FontData.m_MaxSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_FontData.m_FontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
