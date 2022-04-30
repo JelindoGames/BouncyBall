@@ -160,6 +160,7 @@ public class LevelManager : MonoBehaviour
         levelText.text = "World " + (world + 1) + "-" + (currentLevelIdx + 1);
     }
 
+
     public void Play2DAudio(AudioClip clip)
     {
         AudioSource audio = Instantiate(audioPlayer, Camera.main.transform.position, Quaternion.identity).GetComponent<AudioSource>();
