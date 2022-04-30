@@ -45101,7 +45101,7 @@ MonoBehaviour:
   - Random Bug Slayer 69
   - Random Bug Slayer 69
   - Random Bug Slayer 69
-  storyImage: {fileID: 0}
+  storyImage: {fileID: 21300000, guid: ed3729c0a80883942b39282e56993ac5, type: 3}
   destroyObject: {fileID: 1752081644}
 --- !u!114 &1752081647 stripped
 MonoBehaviour:
@@ -54931,6 +54931,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &770173931931835014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2774427891149026622, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+  m_PrefabInstance: {fileID: 770173931931835012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1942153448201835429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55100,6 +55111,10 @@ PrefabInstance:
       propertyPath: storyText
       value: 
       objectReference: {fileID: 362695624}
+    - target: {fileID: 3137842267851617432, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
+      propertyPath: storyImage
+      value: 
+      objectReference: {fileID: 770173931931835014}
     - target: {fileID: 3137842267851617432, guid: 8c24b68d578ec412dbee717fbcb6eaee, type: 3}
       propertyPath: storyPanel
       value: 
