@@ -9848,7 +9848,7 @@ MonoBehaviour:
   - Ronald X
   - Ronald X
   - Polly
-  storyImage: {fileID: 0}
+  storyImage: {fileID: 21300000, guid: 6f0f30e965b7a9c428394251f00bcf45, type: 3}
   destroyObject: {fileID: 5218443254330698873}
 --- !u!114 &2492461042286329040
 MonoBehaviour:

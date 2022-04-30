@@ -12637,6 +12637,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 44766574c0428426c9786926a85b31cd, type: 3}
     - target: {fileID: 1139411049, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
+      propertyPath: storyImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 44766574c0428426c9786926a85b31cd, type: 3}
+    - target: {fileID: 1139411049, guid: 5031c1d32513d4c79996d0766cca007b, type: 3}
       propertyPath: destroyObject
       value: 
       objectReference: {fileID: 9171861618287042866}
