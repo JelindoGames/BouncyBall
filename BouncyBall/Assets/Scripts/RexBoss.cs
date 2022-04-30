@@ -38,6 +38,8 @@ public class RexBoss : MonoBehaviour
     public GameObject goldenGun;
     public GameObject coin;
 
+    public AudioClip hitClip;
+
     public ButtonBehaviour buttXD;
 
     int health = 7;
@@ -395,6 +397,8 @@ public class RexBoss : MonoBehaviour
         shoe2.SetActive(false);
         hand1.SetActive(false);
         hand2.SetActive(false);
+
+        FindObjectOfType<LevelManager>().Play2DAudio(hitClip);
 
         yield return StartCoroutine("MoveToOrigin");
         //player.GetComponent<Movement>().DropParticles(false);
