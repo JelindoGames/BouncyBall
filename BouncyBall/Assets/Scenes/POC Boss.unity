@@ -6967,6 +6967,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 312504450, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 379970317, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7001,6 +7005,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2143419400, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143419400, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 770173931459867736, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
@@ -9853,7 +9861,7 @@ MonoBehaviour:
   - Ronald X
   - Ronald X
   - Ronald X
-  storyImage: {fileID: 0}
+  storyImage: {fileID: 21300000, guid: 6f0f30e965b7a9c428394251f00bcf45, type: 3}
   destroyObject: {fileID: 2492461042286329046}
 --- !u!4 &2492461042286329041
 Transform:

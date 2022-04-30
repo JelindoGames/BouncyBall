@@ -6974,6 +6974,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 886475733, guid: 14b906872f77d4c7a83e479a682d509b, type: 3}
+      propertyPath: storyImage
+      value: 
+      objectReference: {fileID: 21300000, guid: ed3729c0a80883942b39282e56993ac5, type: 3}
     - target: {fileID: 112811371833490330, guid: 14b906872f77d4c7a83e479a682d509b, type: 3}
       propertyPath: m_Mesh
       value: 
