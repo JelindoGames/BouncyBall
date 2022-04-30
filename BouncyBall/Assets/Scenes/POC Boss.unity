@@ -6967,6 +6967,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 379970317, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1333044917, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7090,6 +7094,10 @@ PrefabInstance:
     - target: {fileID: 770173931976279403, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 770173931976279412, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 770173931976279413, guid: ecb25ae3b160b4c4d918c378fd0b6a70, type: 3}
       propertyPath: bossName
